@@ -9,16 +9,13 @@ export default function SkinTone({ setLayerArr, layerArr }) {
     { name: 'Tan', hex: '#F0C480', file: 'tan.png' },
     { name: 'Bronze', hex: '#D8A068', file: 'bronze.png' },
     { name: 'Brown', hex: '#805430', file: 'brown.png' },
-    { name: 'Yellow', hex: '#F8E880', file: 'gold_shift.png' },
-    { name: 'Gold', hex: '#F06018', file: 'gold.png' },
-    { name: 'Light Blue', hex: '#B0C4E0', file: 'lightblue.png' },
+    { name: 'Gold', hex: '#e4e96d', file: 'gold.png' },
     { name: 'Violet', hex: '#706CA8', file: 'purple.png' },
     { name: 'Grey', hex: '#B0B0B0', file: 'grey.png' },
-    { name: 'Green', hex: '#98C848', file: 'green.png' },
-    { name: 'Light Green', hex: '#33b167', file: 'green_shift.png' },
+    { name: 'Green', hex: '#33b168', file: 'green.png' },
+    { name: 'Blue', hex: '#b0c4e0', file: 'blue.png' },
     { name: 'Night', hex: '#41536f', file: 'night.png' },
-    { name: 'Red', hex: '#7b4930', file: 'red.png' },
-    { name: 'Light Red', hex: '#a93f2a', file: 'red_shift.png' },
+    { name: 'Red', hex: '#a93f2a', file: 'red.png' },
   ]
 
   const onClick = (element) => {
@@ -27,11 +24,11 @@ export default function SkinTone({ setLayerArr, layerArr }) {
   }
   return (
     <StyledContainer>
-      <Typography>Skin Tone</Typography>
+      <Typography variant='h4'>Skin Tone</Typography>
       <Divider />
       <Grid container spacing={2}>
         {skinArr.map((element, index) => (
-          <Grid item xs={2.4} key={index}>
+          <Grid item xs={3} key={index}>
             <StyledSkinTone color={element.hex} onClick={() => onClick(element.file)} />
           </Grid>
         ))}

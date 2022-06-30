@@ -27,7 +27,7 @@ export default function Layer({ showLayer, setShowLayer, layerArr, setLayerArr }
           <Select value={layer} onChange={(e) => setLayer(e.target.value)} inputProps={{ 'aria-label': 'Without label' }}>
             <MenuItem value='Accessories'>Accessories</MenuItem>
             <MenuItem value='Hair'>Hair</MenuItem>
-            <MenuItem value='Hats'>Hats</MenuItem>
+            <MenuItem value='Hat'>Hat</MenuItem>
             <MenuItem value='Face'>Face</MenuItem>
             <MenuItem value='Upper'>Upper</MenuItem>
             <MenuItem value='Lower'>Lower</MenuItem>
@@ -36,7 +36,7 @@ export default function Layer({ showLayer, setShowLayer, layerArr, setLayerArr }
         </StyledFormControl>
         <Grid container direction='row' justifyContent='flex-end' alignItems='center' spacing={3}>
           <Grid item>
-            <Button onClick={() => setShowLayer(false)} variant='outlined'>
+            <Button onClick={() => setShowLayer(false)} color='error' variant='outlined'>
               Cancel
             </Button>
           </Grid>

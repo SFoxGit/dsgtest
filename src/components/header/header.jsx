@@ -1,5 +1,10 @@
-import React from 'react';
-
+import Typography from '@mui/material/Typography'
+import React from 'react'
+import { StyledContainer } from './header.style'
 export default function Header() {
-  return <div>Dungeon Sprite Generator</div>;
+  return (
+    <StyledContainer>
+      <Typography variant='h2'>Dungeon Sprite Generator</Typography>
+    </StyledContainer>
+  )
 }
