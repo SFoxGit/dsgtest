@@ -1,13 +1,14 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useEffect, useState } from 'react'
 import Grid from '@mui/material/Grid'
 import SkinTone from '../skin-tone'
 import Button from '@mui/material/Button'
 import Layer from '../layer-modal'
 import ItemComponent from '../item'
-import { ImageHoldingGrid, StyledImage, StyledDownloadContainer, StyledItemArrayContainer } from './styles'
+import { ImageHoldingGrid, StyledDownloadContainer, StyledItemArrayContainer } from './styles'
 import mergeImages from 'merge-images'
 // import { exportComponentAsPNG } from 'react-component-export-image'
 import exportAsImage from '../../utils/exportAsImage'
+import Canvas from '../canvas'
 
 export default function Interface() {
   const [showLayer, setShowLayer] = useState(false)
@@ -20,7 +21,7 @@ export default function Interface() {
     { layerType: 'Feet', type: 'Arcane_Slippers', color: 'black.png', isOpen: true },
   ])
   const [imageConverted, setImageConverted] = useState('')
-  const exportRef = useRef()
+  // const exportRef = useRef()
   // const ComponentToPrint = React.forwardRef((props, ref) => <StyledImage ref={ref} src={imageConverted} alt='skin' />)
   // const componentRef = useRef()
   useEffect(() => {
@@ -46,7 +47,8 @@ export default function Interface() {
         <Grid item container xs={12} md={4} columnSpacing={2}>
           <ImageHoldingGrid item xs={12}>
             {/* <ComponentToPrint ref={componentRef} /> */}
-            <StyledImage ref={exportRef} src={imageConverted} alt='skin' />
+            {/* <StyledImage ref={exportRef} src={imageConverted} alt='skin' /> */}
+            <Canvas srcImage={imageConverted} />
           </ImageHoldingGrid>
           <SkinTone setLayerArr={setLayerArr} layerArr={layerArr} />
         </Grid>
@@ -71,7 +73,7 @@ export default function Interface() {
             </Button>
           </Grid>
           <Grid item xs={4} sm={2}>
-            <Button variant='outlined' onClick={() => exportAsImage(exportRef.current, 'test')}>
+            <Button variant='outlined' onClick={() => exportAsImage('test')}>
               Download 200px
             </Button>
           </Grid>
