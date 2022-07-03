@@ -14,34 +14,45 @@ const theme = createTheme({
     secondary: {
       main: '#f79e02',
     },
+    muted: {
+      main: '#6CDAEE'
+    },
     background: {
       default: '#10E7DC',
     },
   },
   typography: {
     h1: {
-      fontSize: 60,
-      fontWeight: 600,
+      fontSize: 48,
+      fontWeight: 700,
     },
     h2: {
-      fontSize: 48,
-      fontWeight: 500,
+      fontSize: 40,
+      fontWeight: 600,
     },
     h3: {
-      fontSize: 40,
-      fontWeight: 500,
-    },
-    h4: {
       fontSize: 32,
       fontWeight: 500,
     },
+    h4: {
+      fontSize: 24,
+      fontWeight: 500,
+    },
+    h5: {
+      fontSize: 16,
+      fontWeight: 600,
+    },
+    body1: {
+      fontSize: 12,
+      fontWeight: 400,
+    }
   },
 })
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <StyledContainer maxWidth='false'>
+      <StyledContainer maxWidth='false' disableGutters>
         <Header />
         <Container maxWidth='lg'>
           <Interface />

@@ -6,7 +6,7 @@ import { StyledSkinTone, StyledContainer } from './styles/skin.tone.style'
 export default function SkinTone({ setLayerArr, layerArr }) {
   const skinArr = [
     { name: 'Pale', hex: '#F0D4B8', file: 'pale.png' },
-    { name: 'Tan', hex: '#F0C480', file: 'tan.png' },
+    { name: 'Tan', hex: '#F0C480', file: 'Tan.png' },
     { name: 'Bronze', hex: '#D8A068', file: 'bronze.png' },
     { name: 'Brown', hex: '#805430', file: 'brown.png' },
     { name: 'Gold', hex: '#e4e96d', file: 'gold.png' },
@@ -19,7 +19,7 @@ export default function SkinTone({ setLayerArr, layerArr }) {
   ]
 
   const onClick = (element) => {
-    layerArr[0] = { layerType: 'skin', type: null, color: element }
+    layerArr[0] = { layerType: 'Skin', type: null, color: element }
     setLayerArr([...layerArr])
   }
   return (
