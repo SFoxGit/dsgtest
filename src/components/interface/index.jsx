@@ -73,7 +73,7 @@ export default function Interface() {
             </Button>
           </Grid>
           <Grid item xs={4} sm={2}>
-            <Button variant='outlined' onClick={() => exportAsImage('test')}>
+            <Button variant='contained' onClick={() => exportAsImage('test')}>
               Download 200px
             </Button>
           </Grid>
