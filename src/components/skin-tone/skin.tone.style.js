@@ -11,7 +11,7 @@ const StyledSkinTone = styled('div')`
 `
 
 const StyledContainer = styled(Container)`
-  margin-top: 40px;
+  margin-top: 10px;
   margin-bottom: 20px;
   & > * {
     margin-top: 5px;

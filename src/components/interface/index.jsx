@@ -4,14 +4,19 @@ import SkinTone from '../skin-tone'
 import Button from '@mui/material/Button'
 import Layer from '../layer-modal'
 import ItemComponent from '../item'
-import { ImageHoldingGrid, StyledDownloadContainer, StyledItemArrayContainer } from './styles'
+import { ImageHoldingGrid, StyledItemArrayContainer, StyledFabContainer } from './styles'
 import mergeImages from 'merge-images'
-// import { exportComponentAsPNG } from 'react-component-export-image'
 import exportAsImage from '../../utils/exportAsImage'
 import Canvas from '../canvas'
+import TextField from '@mui/material/TextField'
+import Typography from '@mui/material/Typography'
+import DownloadIcon from '@mui/icons-material/Download'
+import Fab from '@mui/material/Fab'
+import AddIcon from '@mui/icons-material/Add'
 
 export default function Interface() {
   const [showLayer, setShowLayer] = useState(false)
+  const [pixels, setPixels] = useState(200)
   const [layerArr, setLayerArr] = useState([
     { layerType: 'Skin', type: null, color: 'pale.png', isOpen: true },
     { layerType: 'Hair', type: 'Academic', color: 'black.png', isOpen: true },
@@ -21,9 +26,6 @@ export default function Interface() {
     { layerType: 'Feet', type: 'Arcane_Slippers', color: 'black.png', isOpen: true },
   ])
   const [imageConverted, setImageConverted] = useState('')
-  // const exportRef = useRef()
-  // const ComponentToPrint = React.forwardRef((props, ref) => <StyledImage ref={ref} src={imageConverted} alt='skin' />)
-  // const componentRef = useRef()
   useEffect(() => {
     const formatData = async () => {
       const newArr = []
@@ -43,16 +45,24 @@ export default function Interface() {
 
   return (
     <>
-      <Grid container spacing={2}>
+      <Grid container spacing={2} m={-1}>
         <Grid item container xs={12} md={4} columnSpacing={2}>
-          <ImageHoldingGrid item xs={12}>
-            {/* <ComponentToPrint ref={componentRef} /> */}
-            {/* <StyledImage ref={exportRef} src={imageConverted} alt='skin' /> */}
-            <Canvas srcImage={imageConverted} />
+          <ImageHoldingGrid item container xs={12} p={0}>
+            <Canvas srcImage={imageConverted} pixels={pixels} />
           </ImageHoldingGrid>
+          <Grid item container xs={6} mt={2} p={0} justifyContent='center' alignItems='center'>
+            <TextField label='Pixels' type='number' color='primary' value={pixels} onChange={(e) => setPixels(e.target.value)} focused />
+          </Grid>
+          <Grid item container xs={6} mt={2} p={0} justifyContent='center' alignItems='center'>
+            <Button variant='contained' onClick={() => exportAsImage('sprite')}>
+              <Typography variant='body1'>
+                <DownloadIcon />
+              </Typography>
+            </Button>
+          </Grid>
           <SkinTone setLayerArr={setLayerArr} layerArr={layerArr} />
         </Grid>
-        <StyledItemArrayContainer item xs={12} md={8}>
+        <StyledItemArrayContainer item xs={12} md={8} sx={{ boxShadow: 3 }}>
           {layerArr?.map((itemName, index) =>
             index !== 0 ? (
               <ItemComponent
@@ -64,26 +74,12 @@ export default function Interface() {
               />
             ) : null
           )}
+          <StyledFabContainer>
+            <Fab color='secondary' aria-label='add' onClick={() => setShowLayer(true)}>
+              <AddIcon />
+            </Fab>
+          </StyledFabContainer>
         </StyledItemArrayContainer>
-        <StyledDownloadContainer item container xs={12}>
-          <Grid item xs={0} sm={3} />
-          <Grid item xs={4} sm={2}>
-            <Button variant='contained' color='primary' href={imageConverted} download>
-              Download
-            </Button>
-          </Grid>
-          <Grid item xs={4} sm={2}>
-            <Button variant='contained' onClick={() => exportAsImage('test')}>
-              Download 200px
-            </Button>
-          </Grid>
-          <Grid item xs={4} sm={2}>
-            <Button variant='contained' color='primary' onClick={() => setShowLayer(true)}>
-              Add Layer
-            </Button>
-          </Grid>
-          <Grid item xs={0} sm={3} />
-        </StyledDownloadContainer>
       </Grid>
       <Layer showLayer={showLayer} setShowLayer={setShowLayer} layerArr={layerArr} setLayerArr={setLayerArr} />
     </>

@@ -1,10 +1,11 @@
 import React, { useEffect, useRef } from 'react'
 
-const Canvas = ({ srcImage }) => {
+const Canvas = ({ srcImage, pixels }) => {
   const canvasRef = useRef(null)
 
   useEffect(() => {
     const canvas = canvasRef.current
+    const scaling = pixels / 24
     const test = canvas.width
     const ctx = canvas.getContext('2d')
     canvas.width = test
@@ -15,11 +16,11 @@ const Canvas = ({ srcImage }) => {
       ctx.mozImageSmoothingEnabled = false
       ctx.oImageSmoothingEnabled = false
       ctx.webkitImageSmoothingEnabled = false
-      ctx.scale(8.33, 8.33)
+      ctx.scale(scaling, scaling)
       ctx.drawImage(img, 0, 0)
     }
-  }, [srcImage])
-  return <canvas id='canvas' ref={canvasRef} height='200' width='200'></canvas>
+  }, [srcImage, pixels])
+  return <canvas id='canvas' ref={canvasRef} height={pixels} width={pixels}></canvas>
 }
 
 export default Canvas

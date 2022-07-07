@@ -1,7 +1,7 @@
 import React from 'react'
 import { Divider, Typography } from '@mui/material'
 import Grid from '@mui/material/Grid'
-import { StyledSkinTone, StyledContainer } from './styles/skin.tone.style'
+import { StyledSkinTone, StyledContainer } from './skin.tone.style'
 
 export default function SkinTone({ setLayerArr, layerArr }) {
   const skinArr = [
@@ -24,7 +24,7 @@ export default function SkinTone({ setLayerArr, layerArr }) {
   }
   return (
     <StyledContainer>
-      <Typography variant='h4'>Skin Tone</Typography>
+      <Typography variant='h4' color='primary'>Skin Tone</Typography>
       <Divider />
       <Grid container spacing={2}>
         {skinArr.map((element, index) => (

@@ -1,46 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import newData from '../../utils/newData'
-import Paper from '@mui/material/Paper'
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
-import Divider from '@mui/material/Divider'
 import FormControl from '@mui/material/FormControl'
 import Select from '@mui/material/Select'
 import MenuItem from '@mui/material/MenuItem'
 import Button from '@mui/material/Button'
-import styled from '@emotion/styled'
-// import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrowDown'
-// import DoubleArrowIcon from '@mui/icons-material/DoubleArrow'
 import DeleteIcon from '@mui/icons-material/Delete'
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import ExpandCircleDownOutlinedIcon from '@mui/icons-material/ExpandCircleDownOutlined'
 import UnfoldLessOutlinedIcon from '@mui/icons-material/UnfoldLessOutlined'
-
-const StyledBoxContainer = styled(Paper)`
-  border: 1px solid;
-  border-radius: 5px;
-  background-color: white;
-`
-
-const StyledDivider = styled(Divider)`
-  border: 1px solid ${(props) => props.theme.palette.muted.main};
-  width: 100%;
-`
-
-const StyledSelect = styled(Select)`
-  .MuiInputBase-input {
-    padding: 8px 16px;
-  }
-`
-
-const StyledIconContainer = styled(Grid)`
-  & > * {
-    display: flex;
-    justify-content: center;
-  }
-`
-
+import InputLabel from '@mui/material/InputLabel'
+import { StyledBoxContainer, StyledDivider, StyledSelect, StyledIconContainer } from './style'
+import AddBoxIcon from '@mui/icons-material/AddBox'
+import IndeterminateCheckBoxIcon from '@mui/icons-material/IndeterminateCheckBox'
 export default function ItemComponent({ itemObj, layerArr, setLayerArr, layerIndex }) {
   const [itemTypeOptions, setItemTypeOptions] = useState([])
   const [itemType, setItemType] = useState(itemObj.type || '')
@@ -49,6 +23,8 @@ export default function ItemComponent({ itemObj, layerArr, setLayerArr, layerInd
   const [showOptions, setShowOptions] = useState(true)
   const { Accessories, Face, Feet, Hair, Hat, Lower, Upper } = newData
   const itemName = itemObj.layerType
+  const currentIndex = itemTypeOptions.indexOf(itemType)
+  const currentColorIndex = colorOptions.indexOf(color)
 
   const moveItem = (to) => {
     const newArr = [...layerArr]
@@ -60,6 +36,18 @@ export default function ItemComponent({ itemObj, layerArr, setLayerArr, layerInd
     const newArr = [...layerArr]
     newArr.splice(layerIndex, 1)
     setLayerArr([...newArr])
+  }
+  const incrementAsset = () => {
+    currentIndex === itemTypeOptions.length - 1 ? setItemType(itemTypeOptions[0]) : setItemType(itemTypeOptions[currentIndex + 1])
+  }
+  const decrementAsset = () => {
+    currentIndex === 0 ? setItemType(itemTypeOptions[itemTypeOptions.length - 1]) : setItemType(itemTypeOptions[currentIndex - 1])
+  }
+  const incrementColor = () => {
+    currentColorIndex === colorOptions.length - 1 ? setColor(colorOptions[0]) : setColor(colorOptions[currentColorIndex + 1])
+  }
+  const decrementColor = () => {
+    currentColorIndex === 0 ? setColor(colorOptions[colorOptions.length - 1]) : setColor(colorOptions[currentColorIndex - 1])
   }
   useEffect(() => {
     switch (itemName) {
@@ -175,7 +163,7 @@ export default function ItemComponent({ itemObj, layerArr, setLayerArr, layerInd
           <Grid item xs={3}>
             <Button onClick={() => setShowOptions(!showOptions)}>{showOptions ? <UnfoldLessOutlinedIcon /> : <ExpandCircleDownOutlinedIcon />}</Button>
           </Grid>
-          <Grid item xs={3} direction='row' justifyContent='center'>
+          <Grid item xs={3}>
             <Button onClick={() => deleteItem()}>
               <DeleteIcon />
             </Button>
@@ -184,40 +172,56 @@ export default function ItemComponent({ itemObj, layerArr, setLayerArr, layerInd
       </Grid>
       {showOptions && <StyledDivider variant='fullWidth' />}
       {showOptions && (
-        <Grid container rowSpacing={1} alignItems='center' p={1} spacing={2}>
-          <Grid item xs={4} sm={2} direction='row' justifyContent='flex-end'>
-            <Typography variant='body1' align='center'>
-              Item Type
-            </Typography>
-          </Grid>
-          <Grid item xs={8} sm={4}>
-            <FormControl fullWidth>
-              <StyledSelect value={itemType} p={0} onChange={(e) => setItemType(e.target.value)} inputProps={{ 'aria-label': 'Without label' }}>
-                {itemTypeOptions.map((option, index) => (
-                  <MenuItem key={itemName + option + index} value={option}>
-                    <Typography variant='body1'>{option.split('_').join(' ')}</Typography>
-                  </MenuItem>
-                ))}
-              </StyledSelect>
-            </FormControl>
-          </Grid>
-          <Grid item xs={4} sm={2}>
-            <Typography variant='body1' align='center'>
-              Options
-            </Typography>
-          </Grid>
-          <Grid item xs={8} sm={4}>
-            {colorOptions?.length && (
-              <FormControl fullWidth>
-                <StyledSelect value={color} onChange={(e) => setColor(e.target.value)} inputProps={{ 'aria-label': 'Without label' }}>
-                  {colorOptions.map((option, index) => (
+        <Grid container rowSpacing={1} alignItems='center' py={2} px={1} spacing={2}>
+          <Grid item container xs={12} sm={6} justifyContent='center'>
+            <Grid item xs={3}>
+              <Button onClick={() => decrementAsset()}>
+                <IndeterminateCheckBoxIcon />
+              </Button>
+            </Grid>
+            <Grid item xs={6}>
+              <FormControl color='primary' size='small' variant='outlined' fullWidth>
+                <InputLabel id='item-type'>Item Type</InputLabel>
+                <Select labelId='item-type' id='item-type-select' autoWidth value={itemType} p={0} onChange={(e) => setItemType(e.target.value)} label='Item Type'>
+                  {itemTypeOptions.map((option, index) => (
                     <MenuItem key={itemName + option + index} value={option}>
-                      {option.slice(0, -4)}
+                      <Typography variant='body1'>{option.split('_').join(' ')}</Typography>
                     </MenuItem>
                   ))}
-                </StyledSelect>
+                </Select>
               </FormControl>
-            )}
+            </Grid>
+            <Grid item xs={3}>
+              <Button onClick={() => incrementAsset()}>
+                <AddBoxIcon />
+              </Button>
+            </Grid>
+          </Grid>
+          <Grid item container xs={12} sm={6} justifyContent='center'>
+            <Grid item xs={3}>
+              <Button onClick={() => decrementColor()}>
+                <IndeterminateCheckBoxIcon />
+              </Button>
+            </Grid>
+            <Grid item xs={6}>
+              {colorOptions?.length && (
+                <FormControl color='primary' size='small' variant='outlined' fullWidth>
+                  <InputLabel id='options'>Options</InputLabel>
+                  <StyledSelect labelId='options' id='options-select' autoWidth value={color} onChange={(e) => setColor(e.target.value)} label='Options'>
+                    {colorOptions.map((option, index) => (
+                      <MenuItem key={itemName + option + index} value={option}>
+                        {option.slice(0, -4)}
+                      </MenuItem>
+                    ))}
+                  </StyledSelect>
+                </FormControl>
+              )}
+            </Grid>
+            <Grid item xs={3}>
+              <Button onClick={() => incrementColor()}>
+                <AddBoxIcon />
+              </Button>
+            </Grid>
           </Grid>
         </Grid>
       )}
