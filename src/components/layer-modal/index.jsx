@@ -18,7 +18,7 @@ export default function Layer({ showLayer, setShowLayer, layerArr, setLayerArr }
     const colorOptions = newData[layer][newAsset]
     const randomColor = colorOptions[Math.floor(Math.random() * colorOptions.length)]
 
-    setLayerArr([...layerArr, { layerType: layer, type: newAsset, color: randomColor, isOpen: true}])
+    setLayerArr([...layerArr, { layerType: layer, type: newAsset, color: randomColor, isOpen: true, isLocked: false}])
     setShowLayer(false)
   }
   return (

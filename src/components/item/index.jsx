@@ -51,7 +51,7 @@ export default function ItemComponent({ itemObj, layerArr, setLayerArr, layerInd
     currentColorIndex === 0 ? setColor(colorOptions[colorOptions.length - 1]) : setColor(colorOptions[currentColorIndex - 1])
   }
   const expandOrCollapse = () => {
-    layerArr[layerIndex] = { layerType: itemObj.layerType, type: itemType, color: color, isOpen: !showOptions }
+    layerArr[layerIndex] = { layerType: itemObj.layerType, type: itemType, color: color, isOpen: !showOptions, isLocked: false }
     setLayerArr([...layerArr])
     setShowOptions(!showOptions)
   }
@@ -132,7 +132,7 @@ export default function ItemComponent({ itemObj, layerArr, setLayerArr, layerInd
 
   useEffect(() => {
     if (color?.length && (layerArr[layerIndex].type !== itemType || layerArr[layerIndex].color !== color)) {
-      layerArr[layerIndex] = { layerType: itemObj.layerType, type: itemType, color: color, isOpen: showOptions }
+      layerArr[layerIndex] = { layerType: itemObj.layerType, type: itemType, color: color, isOpen: showOptions, isLocked: false }
       setLayerArr([...layerArr])
     }
   }, [color, layerArr, setLayerArr, layerIndex, itemType, itemObj.layerType, showOptions])

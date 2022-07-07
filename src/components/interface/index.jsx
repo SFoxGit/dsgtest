@@ -19,12 +19,12 @@ export default function Interface() {
   const [showLayer, setShowLayer] = useState(false)
   const [pixels, setPixels] = useState(200)
   const [layerArr, setLayerArr] = useState([
-    { layerType: 'Skin', type: null, color: 'pale.png', isOpen: true },
-    { layerType: 'Hair', type: 'Academic', color: 'black.png', isOpen: true },
-    { layerType: 'Hat', type: 'Fez', color: 'red.png', isOpen: true },
-    { layerType: 'Upper', type: 'Adept_Tunic', color: 'black.png', isOpen: true },
-    { layerType: 'Lower', type: 'Adept_Robe', color: 'black.png', isOpen: true },
-    { layerType: 'Feet', type: 'Arcane_Slippers', color: 'black.png', isOpen: true },
+    { layerType: 'Skin', type: null, color: 'pale.png', isOpen: true, isLocked: false },
+    { layerType: 'Hair', type: 'Academic', color: 'black.png', isOpen: true, isLocked: false },
+    { layerType: 'Hat', type: 'Fez', color: 'red.png', isOpen: true, isLocked: false },
+    { layerType: 'Upper', type: 'Adept_Tunic', color: 'black.png', isOpen: true, isLocked: false },
+    { layerType: 'Lower', type: 'Adept_Robe', color: 'black.png', isOpen: true, isLocked: false },
+    { layerType: 'Feet', type: 'Arcane_Slippers', color: 'black.png', isOpen: true, isLocked: false },
   ])
   const [imageConverted, setImageConverted] = useState('')
   useEffect(() => {
