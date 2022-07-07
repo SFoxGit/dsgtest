@@ -13,6 +13,7 @@ import Typography from '@mui/material/Typography'
 import DownloadIcon from '@mui/icons-material/Download'
 import Fab from '@mui/material/Fab'
 import AddIcon from '@mui/icons-material/Add'
+import RandomButton from '../random-button/random-button'
 
 export default function Interface() {
   const [showLayer, setShowLayer] = useState(false)
@@ -61,6 +62,7 @@ export default function Interface() {
             </Button>
           </Grid>
           <SkinTone setLayerArr={setLayerArr} layerArr={layerArr} />
+          <RandomButton layerArr={layerArr} setLayerArr={setLayerArr} />
         </Grid>
         <StyledItemArrayContainer item xs={12} md={8} sx={{ boxShadow: 3 }}>
           {layerArr?.map((itemName, index) =>

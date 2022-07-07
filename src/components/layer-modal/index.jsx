@@ -6,12 +6,19 @@ import MenuItem from '@mui/material/MenuItem'
 import Select from '@mui/material/Select'
 import Button from '@mui/material/Button'
 import Grid from '@mui/material/Grid'
+import newData from '../../utils/newData'
 
 export default function Layer({ showLayer, setShowLayer, layerArr, setLayerArr }) {
   const [layer, setLayer] = useState('Accessories')
 
   const updateLayers = () => {
-    setLayerArr([...layerArr, { layerType: layer, type: null, color: null }])
+    const assets = Object.keys(newData[layer])
+    const randomNumber = Math.floor(Math.random() * assets.length)
+    const newAsset = assets[randomNumber]
+    const colorOptions = newData[layer][newAsset]
+    const randomColor = colorOptions[Math.floor(Math.random() * colorOptions.length)]
+
+    setLayerArr([...layerArr, { layerType: layer, type: newAsset, color: randomColor, isOpen: true}])
     setShowLayer(false)
   }
   return (

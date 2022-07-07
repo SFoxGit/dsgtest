@@ -15,12 +15,13 @@ import InputLabel from '@mui/material/InputLabel'
 import { StyledBoxContainer, StyledDivider, StyledSelect, StyledIconContainer } from './style'
 import AddBoxIcon from '@mui/icons-material/AddBox'
 import IndeterminateCheckBoxIcon from '@mui/icons-material/IndeterminateCheckBox'
+
 export default function ItemComponent({ itemObj, layerArr, setLayerArr, layerIndex }) {
   const [itemTypeOptions, setItemTypeOptions] = useState([])
   const [itemType, setItemType] = useState(itemObj.type || '')
   const [colorOptions, setColorOptions] = useState([])
   const [color, setColor] = useState(itemObj.color || '')
-  const [showOptions, setShowOptions] = useState(true)
+  const [showOptions, setShowOptions] = useState(itemObj.isOpen)
   const { Accessories, Face, Feet, Hair, Hat, Lower, Upper } = newData
   const itemName = itemObj.layerType
   const currentIndex = itemTypeOptions.indexOf(itemType)
@@ -48,6 +49,11 @@ export default function ItemComponent({ itemObj, layerArr, setLayerArr, layerInd
   }
   const decrementColor = () => {
     currentColorIndex === 0 ? setColor(colorOptions[colorOptions.length - 1]) : setColor(colorOptions[currentColorIndex - 1])
+  }
+  const expandOrCollapse = () => {
+    layerArr[layerIndex] = { layerType: itemObj.layerType, type: itemType, color: color, isOpen: !showOptions }
+    setLayerArr([...layerArr])
+    setShowOptions(!showOptions)
   }
   useEffect(() => {
     switch (itemName) {
@@ -126,10 +132,10 @@ export default function ItemComponent({ itemObj, layerArr, setLayerArr, layerInd
 
   useEffect(() => {
     if (color?.length && (layerArr[layerIndex].type !== itemType || layerArr[layerIndex].color !== color)) {
-      layerArr[layerIndex] = { layerType: itemObj.layerType, type: itemType, color: color }
+      layerArr[layerIndex] = { layerType: itemObj.layerType, type: itemType, color: color, isOpen: showOptions }
       setLayerArr([...layerArr])
     }
-  }, [color, layerArr, setLayerArr, layerIndex, itemType, itemObj.layerType])
+  }, [color, layerArr, setLayerArr, layerIndex, itemType, itemObj.layerType, showOptions])
   return (
     <StyledBoxContainer>
       <Grid container alignItems='center' px={2}>
@@ -161,7 +167,7 @@ export default function ItemComponent({ itemObj, layerArr, setLayerArr, layerInd
             )}
           </Grid>
           <Grid item xs={3}>
-            <Button onClick={() => setShowOptions(!showOptions)}>{showOptions ? <UnfoldLessOutlinedIcon /> : <ExpandCircleDownOutlinedIcon />}</Button>
+            <Button onClick={() => expandOrCollapse()}>{showOptions ? <UnfoldLessOutlinedIcon /> : <ExpandCircleDownOutlinedIcon />}</Button>
           </Grid>
           <Grid item xs={3}>
             <Button onClick={() => deleteItem()}>
