@@ -25,6 +25,7 @@ const theme = createTheme({
     h1: {
       fontSize: 48,
       fontWeight: 700,
+      fontFamily: 'Edu QLD Beginner',
     },
     h2: {
       fontSize: 40,

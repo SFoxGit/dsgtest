@@ -4,7 +4,7 @@ import { StyledContainer } from './header.style'
 export default function Header() {
   return (
     <StyledContainer>
-      <Typography variant='h2'>Dungeon Sprite</Typography>
+      <Typography variant='h1'>Dungeon Sprite</Typography>
     </StyledContainer>
   )
 }

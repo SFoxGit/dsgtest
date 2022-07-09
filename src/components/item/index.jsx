@@ -15,6 +15,8 @@ import InputLabel from '@mui/material/InputLabel'
 import { StyledBoxContainer, StyledDivider, StyledSelect, StyledIconContainer } from './style'
 import AddBoxIcon from '@mui/icons-material/AddBox'
 import IndeterminateCheckBoxIcon from '@mui/icons-material/IndeterminateCheckBox'
+import LockIcon from '@mui/icons-material/Lock'
+import LockOpenIcon from '@mui/icons-material/LockOpen'
 
 export default function ItemComponent({ itemObj, layerArr, setLayerArr, layerIndex }) {
   const [itemTypeOptions, setItemTypeOptions] = useState([])
@@ -22,10 +24,12 @@ export default function ItemComponent({ itemObj, layerArr, setLayerArr, layerInd
   const [colorOptions, setColorOptions] = useState([])
   const [color, setColor] = useState(itemObj.color || '')
   const [showOptions, setShowOptions] = useState(itemObj.isOpen)
+  const [locked, setLocked] = useState(itemObj.isLocked || false)
   const { Accessories, Face, Feet, Hair, Hat, Lower, Upper } = newData
   const itemName = itemObj.layerType
   const currentIndex = itemTypeOptions.indexOf(itemType)
   const currentColorIndex = colorOptions.indexOf(color)
+  const isMobile = window.matchMedia('(max-width: 420px)').matches
 
   const moveItem = (to) => {
     const newArr = [...layerArr]
@@ -51,9 +55,14 @@ export default function ItemComponent({ itemObj, layerArr, setLayerArr, layerInd
     currentColorIndex === 0 ? setColor(colorOptions[colorOptions.length - 1]) : setColor(colorOptions[currentColorIndex - 1])
   }
   const expandOrCollapse = () => {
-    layerArr[layerIndex] = { layerType: itemObj.layerType, type: itemType, color: color, isOpen: !showOptions, isLocked: false }
+    layerArr[layerIndex] = { layerType: itemObj.layerType, type: itemType, color: color, isOpen: !showOptions, isLocked: locked }
     setLayerArr([...layerArr])
     setShowOptions(!showOptions)
+  }
+  const lockItem = () => {
+    layerArr[layerIndex] = { layerType: itemObj.layerType, type: itemType, color: color, isOpen: showOptions, isLocked: !locked }
+    setLayerArr([...layerArr])
+    setLocked(!locked)
   }
   useEffect(() => {
     switch (itemName) {
@@ -138,41 +147,48 @@ export default function ItemComponent({ itemObj, layerArr, setLayerArr, layerInd
   }, [color, layerArr, setLayerArr, layerIndex, itemType, itemObj.layerType, showOptions])
   return (
     <StyledBoxContainer>
-      <Grid container alignItems='center' px={2}>
-        <Grid item xs={3}>
+      <Grid container alignItems='center' px={{ xs: 1, md: 2 }}>
+        <Grid item xs={4} md={3}>
           <Typography variant='h5' color='primary'>
             {itemName}
           </Typography>
         </Grid>
-        <Grid item xs={3}>
-          {!showOptions && (
-            <Typography variant='body1' color='primary' ml={2}>
-              {itemType.split('_').join(' ')}
-            </Typography>
-          )}
-        </Grid>
-        <StyledIconContainer item container xs={6}>
-          <Grid item xs={3}>
-            {layerIndex !== 1 && (
-              <Button onClick={() => moveItem(layerIndex - 1)}>
-                <KeyboardArrowUpIcon />
-              </Button>
+        {!isMobile && (
+          <Grid item xs={0} md={2}>
+            {!showOptions && (
+              <Typography variant='body1' color='primary' ml={2}>
+                {itemType.split('_').join(' ')}
+              </Typography>
             )}
           </Grid>
-          <Grid item xs={3}>
-            {layerIndex !== layerArr.length - 1 && (
-              <Button onClick={() => moveItem(layerIndex + 1)}>
-                <KeyboardArrowDownIcon />
+        )}
+        <StyledIconContainer item xs={8} md={7}>
+          <Grid container columns={5}>
+            <Grid item xs={1}>
+              {layerIndex !== 1 && (
+                <Button onClick={() => moveItem(layerIndex - 1)}>
+                  <KeyboardArrowUpIcon />
+                </Button>
+              )}
+            </Grid>
+            <Grid item xs={1}>
+              {layerIndex !== layerArr.length - 1 && (
+                <Button onClick={() => moveItem(layerIndex + 1)}>
+                  <KeyboardArrowDownIcon />
+                </Button>
+              )}
+            </Grid>
+            <Grid item xs={1}>
+              <Button onClick={() => expandOrCollapse()}>{showOptions ? <UnfoldLessOutlinedIcon /> : <ExpandCircleDownOutlinedIcon />}</Button>
+            </Grid>
+            <Grid item xs={1}>
+              <Button onClick={() => lockItem()}>{locked ? <LockOpenIcon /> : <LockIcon />}</Button>
+            </Grid>
+            <Grid item xs={1}>
+              <Button onClick={() => deleteItem()}>
+                <DeleteIcon />
               </Button>
-            )}
-          </Grid>
-          <Grid item xs={3}>
-            <Button onClick={() => expandOrCollapse()}>{showOptions ? <UnfoldLessOutlinedIcon /> : <ExpandCircleDownOutlinedIcon />}</Button>
-          </Grid>
-          <Grid item xs={3}>
-            <Button onClick={() => deleteItem()}>
-              <DeleteIcon />
-            </Button>
+            </Grid>
           </Grid>
         </StyledIconContainer>
       </Grid>

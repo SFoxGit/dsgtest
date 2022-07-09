@@ -1,5 +1,6 @@
-import { Container } from '@mui/material'
-import { styled } from '@mui/material/styles'
+// import { Container } from '@mui/material'
+import styled from '@emotion/styled'
+import Paper from '@mui/material/Paper'
 
 const StyledSkinTone = styled('div')`
   background-color: ${(props) => props.color};
@@ -10,12 +11,11 @@ const StyledSkinTone = styled('div')`
   cursor: pointer;
 `
 
-const StyledContainer = styled(Container)`
+const StyledContainer = styled(Paper)`
+  width: 100%;
+  padding: 10px;
   margin-top: 10px;
-  margin-bottom: 20px;
-  & > * {
-    margin-top: 5px;
-  }
+  margin-bottom: 10px;
 `
 
 export { StyledSkinTone, StyledContainer }

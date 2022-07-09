@@ -4,7 +4,7 @@ import SkinTone from '../skin-tone'
 import Button from '@mui/material/Button'
 import Layer from '../layer-modal'
 import ItemComponent from '../item'
-import { ImageHoldingGrid, StyledItemArrayContainer, StyledFabContainer } from './styles'
+import { ImageHoldingGrid, StyledItemArrayContainer, StyledFabContainer, StyledPixelContainer } from './styles'
 import mergeImages from 'merge-images'
 import exportAsImage from '../../utils/exportAsImage'
 import Canvas from '../canvas'
@@ -46,23 +46,35 @@ export default function Interface() {
 
   return (
     <>
-      <Grid container spacing={2} m={-1}>
-        <Grid item container xs={12} md={4} columnSpacing={2}>
-          <ImageHoldingGrid item container xs={12} p={0}>
+      <Grid container>
+        <Grid item container xs={12} md={4} columnSpacing={2} pl={2} pr={{ xs: 0, md: 2 }}>
+          <ImageHoldingGrid item container xs={12}>
             <Canvas srcImage={imageConverted} pixels={pixels} />
           </ImageHoldingGrid>
-          <Grid item container xs={6} mt={2} p={0} justifyContent='center' alignItems='center'>
-            <TextField label='Pixels' type='number' color='primary' value={pixels} onChange={(e) => setPixels(e.target.value)} focused />
-          </Grid>
-          <Grid item container xs={6} mt={2} p={0} justifyContent='center' alignItems='center'>
-            <Button variant='contained' onClick={() => exportAsImage('sprite')}>
-              <Typography variant='body1'>
-                <DownloadIcon />
-              </Typography>
-            </Button>
-          </Grid>
           <SkinTone setLayerArr={setLayerArr} layerArr={layerArr} />
-          <RandomButton layerArr={layerArr} setLayerArr={setLayerArr} />
+          <StyledPixelContainer item container xs={12} justifyContent='space-evenly' alignItems='center'>
+            <Grid item container xs={4} mt={2} p={0} justifyContent='center' alignItems='center'>
+              <TextField
+                label='Pixels'
+                type='number'
+                color='primary'
+                value={pixels}
+                onChange={(e) => setPixels(e.target.value)}
+                sx={{ input: { fontSize: 14, padding: '5px', textAlign: 'center' } }}
+                focused
+              />
+            </Grid>
+            <Grid item container xs={4} mt={2} p={0} justifyContent='center' alignItems='center'>
+              <Button variant='contained' onClick={() => exportAsImage('sprite')}>
+                <Typography variant='body1'>
+                  <DownloadIcon />
+                </Typography>
+              </Button>
+            </Grid>
+          </StyledPixelContainer>
+          <Grid item container xs={12} justifyContent='center' my={1} height='40px'>
+            <RandomButton layerArr={layerArr} setLayerArr={setLayerArr} />
+          </Grid>
         </Grid>
         <StyledItemArrayContainer item xs={12} md={8} sx={{ boxShadow: 3 }}>
           {layerArr?.map((itemName, index) =>

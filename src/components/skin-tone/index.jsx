@@ -1,9 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Divider, Typography } from '@mui/material'
 import Grid from '@mui/material/Grid'
+import Button from '@mui/material/Button'
 import { StyledSkinTone, StyledContainer } from './skin.tone.style'
+import ExpandCircleDownOutlinedIcon from '@mui/icons-material/ExpandCircleDownOutlined'
+import UnfoldLessOutlinedIcon from '@mui/icons-material/UnfoldLessOutlined'
 
 export default function SkinTone({ setLayerArr, layerArr }) {
+  const [showSkinTone, setShowSkinTone] = useState(true)
+  const isMobile = window.matchMedia('(max-width: 420px)').matches
   const skinArr = [
     { name: 'Pale', hex: '#F0D4B8', file: 'pale.png' },
     { name: 'Tan', hex: '#F0C480', file: 'Tan.png' },
@@ -24,15 +29,26 @@ export default function SkinTone({ setLayerArr, layerArr }) {
   }
   return (
     <StyledContainer>
-      <Typography variant='h4' color='primary'>Skin Tone</Typography>
-      <Divider />
-      <Grid container spacing={2}>
-        {skinArr.map((element, index) => (
-          <Grid item xs={3} key={index}>
-            <StyledSkinTone color={element.hex} onClick={() => onClick(element.file)} />
-          </Grid>
-        ))}
+      <Grid container>
+        <Grid item container xs={9} alignItems='center'>
+          <Typography variant='h4' color='primary'>
+            Skin Tone
+          </Typography>
+        </Grid>
+        <Grid item xs={3}>
+          {isMobile && <Button onClick={() => setShowSkinTone(!showSkinTone)}>{showSkinTone ? <UnfoldLessOutlinedIcon /> : <ExpandCircleDownOutlinedIcon />}</Button>}
+        </Grid>
       </Grid>
+      {showSkinTone && <Divider />}
+      {showSkinTone && (
+        <Grid container spacing={2} mt={0}>
+          {skinArr.map((element, index) => (
+            <Grid item xs={3} key={index}>
+              <StyledSkinTone color={element.hex} onClick={() => onClick(element.file)} />
+            </Grid>
+          ))}
+        </Grid>
+      )}
     </StyledContainer>
   )
 }

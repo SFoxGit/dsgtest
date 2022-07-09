@@ -2,13 +2,11 @@ import styled from '@emotion/styled'
 
 const StyledContainer = styled.header`
   color: white;
-  margin-bottom: 40px;
+  margin-bottom: 10px;
   text-align: center;
-  border-bottom: 1px solid black;
   padding: 20px;
-  & > * {
-    -webkit-text-stroke: 2px ${props => props.theme.palette.primary.main};
-  }
+  background: rgb(0, 116, 225);
+  background: linear-gradient(180deg, rgba(0, 116, 225, 1) 35%, rgba(108, 218, 238, 1) 100%);
 `
 
 export { StyledContainer }
