@@ -6,19 +6,19 @@ import MenuItem from '@mui/material/MenuItem'
 import Select from '@mui/material/Select'
 import Button from '@mui/material/Button'
 import Grid from '@mui/material/Grid'
-import newData from '../../utils/newData'
+import data from '../../utils/dataV2'
 
 export default function Layer({ showLayer, setShowLayer, layerArr, setLayerArr }) {
   const [layer, setLayer] = useState('Accessories')
 
   const updateLayers = () => {
-    const assets = Object.keys(newData[layer])
+    const assets = Object.keys(data[layer])
     const randomNumber = Math.floor(Math.random() * assets.length)
     const newAsset = assets[randomNumber]
-    const colorOptions = newData[layer][newAsset]
+    const colorOptions = data[layer][newAsset]
     const randomColor = colorOptions[Math.floor(Math.random() * colorOptions.length)]
 
-    setLayerArr([...layerArr, { layerType: layer, type: newAsset, color: randomColor, isOpen: true, isLocked: false}])
+    setLayerArr([...layerArr, { layerType: layer, assetName: newAsset, color: randomColor, isOpen: true, isLocked: false, display: true}])
     setShowLayer(false)
   }
   return (
@@ -34,8 +34,10 @@ export default function Layer({ showLayer, setShowLayer, layerArr, setLayerArr }
           <Select value={layer} onChange={(e) => setLayer(e.target.value)} inputProps={{ 'aria-label': 'Without label' }}>
             <MenuItem value='Accessories'>Accessories</MenuItem>
             <MenuItem value='Hair'>Hair</MenuItem>
-            <MenuItem value='Hat'>Hat</MenuItem>
+            <MenuItem value='Hats'>Hats</MenuItem>
             <MenuItem value='Face'>Face</MenuItem>
+            <MenuItem value='Off_Hand'>Off Hand</MenuItem>
+            <MenuItem value='Outfits'>Outfits</MenuItem>
             <MenuItem value='Upper'>Upper</MenuItem>
             <MenuItem value='Lower'>Lower</MenuItem>
             <MenuItem value='Feet'>Feet</MenuItem>

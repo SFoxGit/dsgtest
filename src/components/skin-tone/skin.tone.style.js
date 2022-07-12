@@ -16,6 +16,7 @@ const StyledContainer = styled(Paper)`
   padding: 10px;
   margin-top: 10px;
   margin-bottom: 10px;
+  ${(props) => !props.expand && 'height: 36px'}
 `
 
 export { StyledSkinTone, StyledContainer }

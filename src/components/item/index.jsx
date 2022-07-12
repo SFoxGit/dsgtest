@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import newData from '../../utils/newData'
+import data from '../../utils/dataV2'
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 import FormControl from '@mui/material/FormControl'
@@ -19,13 +19,13 @@ import LockIcon from '@mui/icons-material/Lock'
 import LockOpenIcon from '@mui/icons-material/LockOpen'
 
 export default function ItemComponent({ itemObj, layerArr, setLayerArr, layerIndex }) {
-  const [itemTypeOptions, setItemTypeOptions] = useState([])
-  const [itemType, setItemType] = useState(itemObj.type || '')
-  const [colorOptions, setColorOptions] = useState([])
-  const [color, setColor] = useState(itemObj.color || '')
+  const [itemTypeOptions, setItemTypeOptions] = useState(Object.keys(data[itemObj.layerType]))
+  const [itemType, setItemType] = useState(itemObj.assetName)
+  const [colorOptions, setColorOptions] = useState(data[itemObj.layerType][itemType])
+  const [color, setColor] = useState(itemObj.color)
   const [showOptions, setShowOptions] = useState(itemObj.isOpen)
   const [locked, setLocked] = useState(itemObj.isLocked || false)
-  const { Accessories, Face, Feet, Hair, Hat, Lower, Upper } = newData
+  // const { Accessories, Face, Feet, Hair, Hat, Lower, Upper } = data
   const itemName = itemObj.layerType
   const currentIndex = itemTypeOptions.indexOf(itemType)
   const currentColorIndex = colorOptions.indexOf(color)
@@ -55,50 +55,26 @@ export default function ItemComponent({ itemObj, layerArr, setLayerArr, layerInd
     currentColorIndex === 0 ? setColor(colorOptions[colorOptions.length - 1]) : setColor(colorOptions[currentColorIndex - 1])
   }
   const expandOrCollapse = () => {
-    layerArr[layerIndex] = { layerType: itemObj.layerType, type: itemType, color: color, isOpen: !showOptions, isLocked: locked }
+    layerArr[layerIndex].isOpen = !showOptions
     setLayerArr([...layerArr])
     setShowOptions(!showOptions)
   }
   const lockItem = () => {
-    layerArr[layerIndex] = { layerType: itemObj.layerType, type: itemType, color: color, isOpen: showOptions, isLocked: !locked }
+    layerArr[layerIndex].isLocked = !locked
     setLayerArr([...layerArr])
     setLocked(!locked)
   }
   useEffect(() => {
-    switch (itemName) {
-      case 'Accessories':
-        setItemTypeOptions(Object.keys(Accessories))
-        // setItemType(Object.keys(Accessories)[0])
-        break
-      case 'Face':
-        setItemTypeOptions(Object.keys(Face))
-        // setItemType(Object.keys(Face)[0])
-        break
-      case 'Feet':
-        setItemTypeOptions(Object.keys(Feet))
-        // setItemType(Object.keys(Feet)[0])
-        break
-      case 'Hair':
-        setItemTypeOptions(Object.keys(Hair))
-        // setItemType(Object.keys(Hair)[0])
-        break
-      case 'Hat':
-        setItemTypeOptions(Object.keys(Hat))
-        // setItemType(Object.keys(Hat)[0])
-        break
-      case 'Lower':
-        setItemTypeOptions(Object.keys(Lower))
-        // setItemType(Object.keys(Lower)[0])
-        break
-      case 'Upper':
-        setItemTypeOptions(Object.keys(Upper))
-        // setItemType(Object.keys(Upper)[0])
-        break
-      default:
-        break
+    if (!colorOptions.includes(color)) {
+      setColor(colorOptions[0])
     }
-  }, [itemName, Accessories, Face, Feet, Hair, Hat, Lower, Upper])
-
+    if (colorOptions.includes('swarthy.png')) {
+      setColor(layerArr[0].color)
+    }
+  }, [color, colorOptions, layerArr])
+  useEffect(() => {
+    setItemTypeOptions(Object.keys(data[itemName]))
+  }, [itemName])
   useEffect(() => {
     if (!itemType) {
       setItemType(itemTypeOptions[0])
@@ -106,33 +82,8 @@ export default function ItemComponent({ itemObj, layerArr, setLayerArr, layerInd
   }, [setItemType, itemTypeOptions, itemType])
 
   useEffect(() => {
-    switch (itemName) {
-      case 'Accessories':
-        setColorOptions(Accessories[itemType])
-        break
-      case 'Face':
-        setColorOptions(Face[itemType])
-        break
-      case 'Feet':
-        setColorOptions(Feet[itemType])
-        break
-      case 'Hair':
-        setColorOptions(Hair[itemType])
-        break
-      case 'Hat':
-        setColorOptions(Hat[itemType])
-        break
-      case 'Lower':
-        setColorOptions(Lower[itemType])
-        break
-      case 'Upper':
-        setColorOptions(Upper[itemType])
-        break
-      default:
-        break
-    }
-  }, [itemType, itemName, Accessories, Face, Feet, Hair, Hat, Lower, Upper])
-
+    setColorOptions(data[itemName][itemType])
+  }, [itemName, itemType])
   useEffect(() => {
     if (colorOptions?.length && color === (null || '')) {
       setColor(colorOptions[0])
@@ -140,8 +91,8 @@ export default function ItemComponent({ itemObj, layerArr, setLayerArr, layerInd
   }, [setColor, colorOptions, color])
 
   useEffect(() => {
-    if (color?.length && (layerArr[layerIndex].type !== itemType || layerArr[layerIndex].color !== color)) {
-      layerArr[layerIndex] = { layerType: itemObj.layerType, type: itemType, color: color, isOpen: showOptions, isLocked: false }
+    if (color?.length && (layerArr[layerIndex].assetName !== itemType || layerArr[layerIndex].color !== color)) {
+      layerArr[layerIndex] = { layerType: itemObj.layerType, assetName: itemType, color: color, isOpen: showOptions, isLocked: false, display: true }
       setLayerArr([...layerArr])
     }
   }, [color, layerArr, setLayerArr, layerIndex, itemType, itemObj.layerType, showOptions])
@@ -165,7 +116,7 @@ export default function ItemComponent({ itemObj, layerArr, setLayerArr, layerInd
         <StyledIconContainer item xs={8} md={7}>
           <Grid container columns={5}>
             <Grid item xs={1}>
-              {layerIndex !== 1 && (
+              {layerIndex !== 4 && (
                 <Button onClick={() => moveItem(layerIndex - 1)}>
                   <KeyboardArrowUpIcon />
                 </Button>
@@ -219,32 +170,34 @@ export default function ItemComponent({ itemObj, layerArr, setLayerArr, layerInd
               </Button>
             </Grid>
           </Grid>
-          <Grid item container xs={12} sm={6} justifyContent='center'>
-            <Grid item xs={3}>
-              <Button onClick={() => decrementColor()}>
-                <IndeterminateCheckBoxIcon />
-              </Button>
+          {!colorOptions.includes('swarthy.png') && (
+            <Grid item container xs={12} sm={6} justifyContent='center'>
+              <Grid item xs={3}>
+                <Button onClick={() => decrementColor()}>
+                  <IndeterminateCheckBoxIcon />
+                </Button>
+              </Grid>
+              <Grid item xs={6}>
+                {colorOptions?.length && (
+                  <FormControl color='primary' size='small' variant='outlined' fullWidth>
+                    <InputLabel id='options'>Options</InputLabel>
+                    <StyledSelect labelId='options' id='options-select' autoWidth value={color} onChange={(e) => setColor(e.target.value)} label='Options'>
+                      {colorOptions.map((option, index) => (
+                        <MenuItem key={itemName + option + index} value={option}>
+                          {option.slice(0, -4)}
+                        </MenuItem>
+                      ))}
+                    </StyledSelect>
+                  </FormControl>
+                )}
+              </Grid>
+              <Grid item xs={3}>
+                <Button onClick={() => incrementColor()}>
+                  <AddBoxIcon />
+                </Button>
+              </Grid>
             </Grid>
-            <Grid item xs={6}>
-              {colorOptions?.length && (
-                <FormControl color='primary' size='small' variant='outlined' fullWidth>
-                  <InputLabel id='options'>Options</InputLabel>
-                  <StyledSelect labelId='options' id='options-select' autoWidth value={color} onChange={(e) => setColor(e.target.value)} label='Options'>
-                    {colorOptions.map((option, index) => (
-                      <MenuItem key={itemName + option + index} value={option}>
-                        {option.slice(0, -4)}
-                      </MenuItem>
-                    ))}
-                  </StyledSelect>
-                </FormControl>
-              )}
-            </Grid>
-            <Grid item xs={3}>
-              <Button onClick={() => incrementColor()}>
-                <AddBoxIcon />
-              </Button>
-            </Grid>
-          </Grid>
+          )}
         </Grid>
       )}
     </StyledBoxContainer>

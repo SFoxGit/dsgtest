@@ -14,28 +14,39 @@ import DownloadIcon from '@mui/icons-material/Download'
 import Fab from '@mui/material/Fab'
 import AddIcon from '@mui/icons-material/Add'
 import RandomButton from '../random-button/random-button'
+import OffHand from '../off-hand'
+import RandomizerTool from '../../utils/randomizer-tool'
 
+const randomWeapon = RandomizerTool('Off_Hand')
+const randomHair = RandomizerTool('Hair')
+const randomHat = RandomizerTool('Hats')
+const randomUpper = RandomizerTool('Upper')
+const randomLower = RandomizerTool('Lower')
+const randomFeet = RandomizerTool('Feet')
 export default function Interface() {
   const [showLayer, setShowLayer] = useState(false)
   const [pixels, setPixels] = useState(200)
   const [layerArr, setLayerArr] = useState([
-    { layerType: 'Skin', type: null, color: 'pale.png', isOpen: true, isLocked: false },
-    { layerType: 'Hair', type: 'Academic', color: 'black.png', isOpen: true, isLocked: false },
-    { layerType: 'Hat', type: 'Fez', color: 'red.png', isOpen: true, isLocked: false },
-    { layerType: 'Upper', type: 'Adept_Tunic', color: 'black.png', isOpen: true, isLocked: false },
-    { layerType: 'Lower', type: 'Adept_Robe', color: 'black.png', isOpen: true, isLocked: false },
-    { layerType: 'Feet', type: 'Arcane_Slippers', color: 'black.png', isOpen: true, isLocked: false },
+    { layerType: 'Skin', assetName: null, color: 'pale.png', isOpen: true, isLocked: false, display: true },
+    { layerType: 'Arms', assetName: 'Bare_Arm', color: 'pale.png', isOpen: true, isLocked: true, display: false },
+    { layerType: 'Off_Hand', assetName: randomWeapon.asset, color: randomWeapon.color, isOpen: true, isLocked: false, display: false },
+    { layerType: 'Sleeves', assetName: 'None', color: 'none', isOpen: true, isLocked: false, display: false },
+    { layerType: 'Hair', assetName: randomHair.asset, color: randomHair.color, isOpen: true, isLocked: false, display: true },
+    { layerType: 'Hats', assetName: randomHat.asset, color: randomHat.color, isOpen: true, isLocked: false, display: true },
+    { layerType: 'Upper', assetName: randomUpper.asset, color: randomUpper.color, isOpen: true, isLocked: false, display: true },
+    { layerType: 'Lower', assetName: randomLower.asset, color: randomLower.color, isOpen: true, isLocked: false, display: true },
+    { layerType: 'Feet', assetName: randomFeet.asset, color: randomFeet.color, isOpen: true, isLocked: false, display: true },
   ])
   const [imageConverted, setImageConverted] = useState('')
   useEffect(() => {
     const formatData = async () => {
       const newArr = []
       for (const layer of layerArr) {
-        if (layer.type) {
-          const importedImage = await import(`../../assets/${layer.layerType}/${layer.type}/${layer.color}`)
-          newArr.push(importedImage.default)
+        if (layer.assetName) {
+          const importedImage = await import(`../../assetsV2/${layer.layerType}/${layer.assetName}/${layer.color}`)
+          layer.display && newArr.push(importedImage.default)
         } else {
-          const importedImage = await import(`../../assets/${layer.layerType}/${layer.color}`)
+          const importedImage = await import(`../../assetsV2/${layer.layerType}/${layer.color}`)
           newArr.push(importedImage.default)
         }
       }
@@ -52,6 +63,7 @@ export default function Interface() {
             <Canvas srcImage={imageConverted} pixels={pixels} />
           </ImageHoldingGrid>
           <SkinTone setLayerArr={setLayerArr} layerArr={layerArr} />
+          <OffHand setLayerArr={setLayerArr} layerArr={layerArr} />
           <StyledPixelContainer item container xs={12} justifyContent='space-evenly' alignItems='center'>
             <Grid item container xs={4} mt={2} p={0} justifyContent='center' alignItems='center'>
               <TextField
@@ -78,9 +90,9 @@ export default function Interface() {
         </Grid>
         <StyledItemArrayContainer item xs={12} md={8} sx={{ boxShadow: 3 }}>
           {layerArr?.map((itemName, index) =>
-            index !== 0 ? (
+            index > 3 ? (
               <ItemComponent
-                key={'ItemComp' + index + itemName.layerType + itemName.type || 'new'}
+                key={'ItemComp' + index + itemName.layerType + itemName.assetName || 'new'}
                 itemObj={itemName}
                 setLayerArr={setLayerArr}
                 layerArr={layerArr}

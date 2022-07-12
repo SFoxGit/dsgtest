@@ -5,7 +5,7 @@ const Canvas = ({ srcImage, pixels }) => {
 
   useEffect(() => {
     const canvas = canvasRef.current
-    const scaling = pixels / 24
+    const scaling = pixels / 35
     const test = canvas.width
     const ctx = canvas.getContext('2d')
     canvas.width = test
