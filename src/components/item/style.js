@@ -9,6 +9,7 @@ const StyledBoxContainer = styled(Paper)`
   border: 1px solid;
   border-radius: 5px;
   background-color: white;
+  opacity: 0.92;
 `
 
 const StyledDivider = styled(Divider)`

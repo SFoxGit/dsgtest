@@ -36,7 +36,6 @@ export default function Layer({ showLayer, setShowLayer, layerArr, setLayerArr }
             <MenuItem value='Hair'>Hair</MenuItem>
             <MenuItem value='Hats'>Hats</MenuItem>
             <MenuItem value='Face'>Face</MenuItem>
-            <MenuItem value='Off_Hand'>Off Hand</MenuItem>
             <MenuItem value='Outfits'>Outfits</MenuItem>
             <MenuItem value='Upper'>Upper</MenuItem>
             <MenuItem value='Lower'>Lower</MenuItem>

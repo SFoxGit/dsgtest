@@ -1,5 +1,7 @@
 import Grid from '@mui/material/Grid'
 import styled from '@emotion/styled'
+import logoLarge from '../../design/logoLarge.png'
+import logoSmall from '../../design/logoSmall.png'
 
 const ImageHoldingGrid = styled(Grid)`
   display: flex;
@@ -13,6 +15,9 @@ const StyledItemArrayContainer = styled(Grid)`
   height: 700px;
   overflow-y: auto;
   background-color: ${(props) => props.theme.palette.muted.main};
+  background-image: url(${logoLarge});
+  background-repeat: no-repeat;
+  background-position: center;
   border-radius: 5px;
   padding: 0px 16px !important;
   position: relative;
@@ -20,6 +25,7 @@ const StyledItemArrayContainer = styled(Grid)`
     margin: 16px 0px;
   };
   @media only screen and (max-width: 600px) {
+    background-image: url(${logoSmall});
     padding: 0px 4px !important;
     & > * {
       margin: 4px 0px;

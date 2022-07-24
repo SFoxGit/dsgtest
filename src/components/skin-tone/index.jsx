@@ -5,6 +5,7 @@ import Button from '@mui/material/Button'
 import { StyledSkinTone, StyledContainer } from './skin.tone.style'
 import ExpandCircleDownOutlinedIcon from '@mui/icons-material/ExpandCircleDownOutlined'
 import UnfoldLessOutlinedIcon from '@mui/icons-material/UnfoldLessOutlined'
+import Tooltip from '@mui/material/Tooltip'
 
 export default function SkinTone({ setLayerArr, layerArr }) {
   const [showSkinTone, setShowSkinTone] = useState(true)
@@ -55,7 +56,9 @@ export default function SkinTone({ setLayerArr, layerArr }) {
           <Grid container spacing={2} mt={0} columns={5}>
             {skinArr.map((element, index) => (
               <Grid item xs={1} key={index}>
-                <StyledSkinTone color={element.hex} onClick={() => onClick(element.file)} />
+                <Tooltip title={element.name} placement='top'>
+                  <StyledSkinTone color={element.hex} onClick={() => onClick(element.file)} />
+                </Tooltip>
               </Grid>
             ))}
           </Grid>

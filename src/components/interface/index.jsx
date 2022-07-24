@@ -1,28 +1,30 @@
 import React, { useEffect, useState } from 'react'
 import Grid from '@mui/material/Grid'
-import SkinTone from '../skin-tone'
 import Button from '@mui/material/Button'
-import Layer from '../layer-modal'
-import ItemComponent from '../item'
-import { ImageHoldingGrid, StyledItemArrayContainer, StyledFabContainer, StyledPixelContainer } from './styles'
-import mergeImages from 'merge-images'
-import exportAsImage from '../../utils/exportAsImage'
-import Canvas from '../canvas'
 import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
 import DownloadIcon from '@mui/icons-material/Download'
 import Fab from '@mui/material/Fab'
 import AddIcon from '@mui/icons-material/Add'
+import SkinTone from '../skin-tone'
+import Layer from '../layer-modal'
+// import ItemComponent from '../item'
+import mergeImages from 'merge-images'
+import exportAsImage from '../../utils/exportAsImage'
+import Canvas from '../canvas'
 import RandomButton from '../random-button/random-button'
 import OffHand from '../off-hand'
 import RandomizerTool from '../../utils/randomizer-tool'
+import { ImageHoldingGrid, StyledItemArrayContainer, StyledFabContainer, StyledPixelContainer } from './styles'
+import Coin from '../coin'
 
 const randomWeapon = RandomizerTool('Off_Hand')
-const randomHair = RandomizerTool('Hair')
+// const randomHair = RandomizerTool('Hair')
 const randomHat = RandomizerTool('Hats')
 const randomUpper = RandomizerTool('Upper')
 const randomLower = RandomizerTool('Lower')
 const randomFeet = RandomizerTool('Feet')
+
 export default function Interface() {
   const [showLayer, setShowLayer] = useState(false)
   const [pixels, setPixels] = useState(200)
@@ -31,7 +33,7 @@ export default function Interface() {
     { layerType: 'Arms', assetName: 'Bare_Arm', color: 'pale.png', isOpen: true, isLocked: true, display: false },
     { layerType: 'Off_Hand', assetName: randomWeapon.asset, color: randomWeapon.color, isOpen: true, isLocked: false, display: false },
     { layerType: 'Sleeves', assetName: 'None', color: 'none', isOpen: true, isLocked: false, display: false },
-    { layerType: 'Hair', assetName: randomHair.asset, color: randomHair.color, isOpen: true, isLocked: false, display: true },
+    // { layerType: 'Hair', assetName: randomHair.asset, color: randomHair.color, isOpen: true, isLocked: false, display: true },
     { layerType: 'Hats', assetName: randomHat.asset, color: randomHat.color, isOpen: true, isLocked: false, display: true },
     { layerType: 'Upper', assetName: randomUpper.asset, color: randomUpper.color, isOpen: true, isLocked: false, display: true },
     { layerType: 'Lower', assetName: randomLower.asset, color: randomLower.color, isOpen: true, isLocked: false, display: true },
@@ -91,12 +93,18 @@ export default function Interface() {
         <StyledItemArrayContainer item xs={12} md={8} sx={{ boxShadow: 3 }}>
           {layerArr?.map((itemName, index) =>
             index > 3 ? (
-              <ItemComponent
+              // <ItemComponent
+              //   key={'ItemComp' + index + itemName.layerType + itemName.assetName || 'new'}
+              //   itemObj={itemName}
+              //   setLayerArr={setLayerArr}
+              //   layerArr={layerArr}
+              //   layerIndex={index}
+              // />
+              <Coin
                 key={'ItemComp' + index + itemName.layerType + itemName.assetName || 'new'}
-                itemObj={itemName}
-                setLayerArr={setLayerArr}
-                layerArr={layerArr}
-                layerIndex={index}
+                type={itemName.layerType} 
+                asset={itemName.assetName} 
+                color={itemName.color}
               />
             ) : null
           )}
