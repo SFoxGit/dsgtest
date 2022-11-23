@@ -1,5 +1,5 @@
 import Header from './components/header/header'
-import Interface from './components/interface'
+import Interface from './components/interface/interface'
 import { StyledContainer } from './App.style'
 import Container from '@mui/material/Container'
 

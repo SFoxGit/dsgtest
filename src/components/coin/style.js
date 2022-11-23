@@ -9,11 +9,11 @@ const StyledCoin = styled.img`
 
 const StyledAsset = styled.img`
   position: absolute;
-  top: 10px;
-  left: 5px;
+  top: 15px;
+  left: 15px;
   object-fit: fill;
-  width: 50px;
-  height: 50px;
+  width: 30px;
+  height: 30px;
   z-index: 3;
 `
 
