@@ -1,73 +1,72 @@
-import React, { useEffect, useState, useRef } from "react";
-import coinGold from "../../design/coinGold.png";
-import { StyledCoin, StyledAsset, StyledContainer } from "./style";
-import { useDrag, useDrop } from "react-dnd";
-import useLayerStore from "../../utils/store";
-// import ItemModal from "../item-modal/ItemModal";
+import React, { useEffect, useState, useRef } from 'react'
+import { BorderContainer, StyledAsset, StyledContainer } from './style'
+import { useDrag, useDrop } from 'react-dnd'
+import useLayerStore from '../../utils/store'
+import useOptionsStore from '../options/utils/options-store'
 
 const Coin = ({ type, asset, color, index }) => {
-  const moveLayer = useLayerStore((state) => state.moveLayer);
-  // const [showItemModal, setShowItemModal] = useState(false);
+  const moveLayer = useLayerStore((state) => state.moveLayer)
+  const setSelectedLayer = useLayerStore((state) => state.setSelectedLayer)
+  const setOptionsState = useOptionsStore((state) => state.setOptionsState)
+  const handleCoinClick = () => {
+    setSelectedLayer(index)
+    setOptionsState('item')
+  }
 
   const [{ isDragging }, dragRef] = useDrag({
-    type: "item",
+    type: 'item',
     item: { index },
     collect: (monitor) => ({
       isDragging: monitor.isDragging(),
     }),
-  });
+  })
   const [, dropRef] = useDrop({
-    accept: "item",
+    accept: 'item',
     hover: (item, monitor) => {
       if (!ref.current) {
-        return;
+        return
       }
-      const dragIndex = item.index;
-      const hoverIndex = index;
+      const dragIndex = item.index
+      const hoverIndex = index
       if (dragIndex === hoverIndex) {
-        return;
+        return
       }
-      const hoverBoundingRect = ref.current?.getBoundingClientRect();
+      const hoverBoundingRect = ref.current?.getBoundingClientRect()
       const hoverMiddleY =
-        (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
-      const hoverActualY = monitor.getClientOffset().y - hoverBoundingRect.top;
+        (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2
+      const hoverActualY = monitor.getClientOffset().y - hoverBoundingRect.top
 
       // if dragging down, continue only when hover is smaller than middle Y
-      if (dragIndex < hoverIndex && hoverActualY < hoverMiddleY) return;
+      if (dragIndex < hoverIndex && hoverActualY < hoverMiddleY) return
       // if dragging up, continue only when hover is bigger than middle Y
-      if (dragIndex > hoverIndex && hoverActualY > hoverMiddleY) return;
+      if (dragIndex > hoverIndex && hoverActualY > hoverMiddleY) return
 
-      moveLayer(dragIndex, hoverIndex);
-      item.index = hoverIndex;
+      moveLayer(dragIndex, hoverIndex)
+      item.index = hoverIndex
     },
-  });
+  })
 
-  const ref = useRef(null);
-  const dragDropRef = dragRef(dropRef(ref));
-  const opacity = isDragging ? 0 : 1;
-  const [image, setImage] = useState();
+  const ref = useRef(null)
+  const dragDropRef = dragRef(dropRef(ref))
+  // const opacity = isDragging ? 0 : 1
+  const [image, setImage] = useState()
   useEffect(() => {
     const formatData = async () => {
       const imageImport = await import(
         `../../assetsV3/${type}/${asset}/preview.png`
-      );
-      setImage(imageImport.default);
-    };
-    formatData();
-  }, [type, asset, color]);
+      )
+      setImage(imageImport.default)
+    }
+    formatData()
+  }, [type, asset, color])
 
   return (
-    <>
-      <StyledContainer ref={dragDropRef} style={{ opacity }}>
-        <StyledCoin src={coinGold} alt="gold-coin" />
-        {image && <StyledAsset src={image} alt="asset-preview" />}
+    <BorderContainer ref={dragDropRef} onClick={() => handleCoinClick()} isDragging={isDragging}>
+      <StyledContainer>
+        {image && <StyledAsset importedImage={image} alt='asset-preview' />}
       </StyledContainer>
-      {/* <ItemModal
-        showItemModal={showItemModal}
-        setShowItemModal={setShowItemModal}
-      /> */}
-    </>
-  );
-};
+    </BorderContainer>
+  )
+}
 
-export default Coin;
+export default Coin

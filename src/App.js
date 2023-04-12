@@ -1,7 +1,5 @@
-import Header from './components/header/header'
 import Interface from './components/interface/interface'
 import { StyledContainer } from './App.style'
-import Container from '@mui/material/Container'
 
 import { ThemeProvider, createTheme } from '@mui/material/styles'
 
@@ -9,16 +7,23 @@ const theme = createTheme({
   palette: {
     type: 'light',
     primary: {
-      main: '#0074E1',
+      main: '#bacac9', // light grey background
+      alternate: '#9DB4B2',
     },
     secondary: {
-      main: '#f79e02',
+      main: '#404648', // border around image for dark background
+      alternate: '#404040',
     },
     muted: {
-      main: '#6CDAEE'
+      main: '#bccccc',
+    },
+    white: {
+      main: '#FEFEFE',
+      alternate: '#E2E9E8',
     },
     background: {
-      default: '#10E7DC',
+      default: '#262626', // Darkest
+      alternate: '#44444c',
     },
   },
   typography: {
@@ -46,7 +51,7 @@ const theme = createTheme({
     body1: {
       fontSize: 12,
       fontWeight: 400,
-    }
+    },
   },
 })
 
@@ -54,10 +59,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <StyledContainer maxWidth='false' disableGutters>
-        <Header />
-        <Container maxWidth='lg'>
-          <Interface />
-        </Container>
+        <Interface />
       </StyledContainer>
     </ThemeProvider>
   )

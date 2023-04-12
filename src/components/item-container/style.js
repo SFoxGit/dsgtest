@@ -1,25 +1,98 @@
-import Grid from '@mui/material/Grid'
 import styled from '@emotion/styled'
-import logoLarge from '../../userInterface/tokensVertical.png'
 
-const StyledItemArrayContainer = styled(Grid)`
-  height: 700px;
-  overflow-y: auto;
-  background-image: url(${logoLarge});
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 100% 100%;
-  border-radius: 5px;
-  padding: 0px 16px !important;
+const StyledItemArrayContainer = styled.div`
+  height: 100%;
+  width: 100%;
+  max-width: 80px;
+  background-color: ${({ theme }) => theme.palette.primary.main};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  clip-path: polygon(
+    0px 6px,
+    3px 6px,
+    3px 3px,
+    6px 3px,
+    6px 0px,
+    calc(100% - 6px) 0px,
+    calc(100% - 6px) 3px,
+    calc(100% - 3px) 3px,
+    calc(100% - 3px) 6px,
+    100% 6px,
+    100% calc(100% - 6px),
+    calc(100% - 3px) calc(100% - 6px),
+    calc(100% - 3px) calc(100% - 3px),
+    calc(100% - 6px) calc(100% - 3px),
+    calc(100% - 6px) 100%,
+    6px 100%,
+    6px calc(100% - 3px),
+    3px calc(100% - 3px),
+    3px calc(100% - 6px),
+    0px calc(100% - 6px)
+  );
+`
+const BorderContainer = styled.div`
+  width: calc(100% - 6px);
+  height: calc(100% - 6px);
+  background-color: ${({ theme }) => theme.palette.secondary.main};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  clip-path: polygon(
+    0px 6px,
+    3px 6px,
+    3px 3px,
+    6px 3px,
+    6px 0px,
+    calc(100% - 6px) 0px,
+    calc(100% - 6px) 3px,
+    calc(100% - 3px) 3px,
+    calc(100% - 3px) 6px,
+    100% 6px,
+    100% calc(100% - 6px),
+    calc(100% - 3px) calc(100% - 6px),
+    calc(100% - 3px) calc(100% - 3px),
+    calc(100% - 6px) calc(100% - 3px),
+    calc(100% - 6px) 100%,
+    6px 100%,
+    6px calc(100% - 3px),
+    3px calc(100% - 3px),
+    3px calc(100% - 6px),
+    0px calc(100% - 6px)
+  );
+`
+const StyledContainer = styled.div`
+  width: calc(100% - 5px);
+  height: calc(100% - 5px);
+  background-color: ${({ theme }) => theme.palette.primary.main};
+  clip-path: polygon(
+    0px 6px,
+    3px 6px,
+    3px 3px,
+    6px 3px,
+    6px 0px,
+    calc(100% - 6px) 0px,
+    calc(100% - 6px) 3px,
+    calc(100% - 3px) 3px,
+    calc(100% - 3px) 6px,
+    100% 6px,
+    100% calc(100% - 6px),
+    calc(100% - 3px) calc(100% - 6px),
+    calc(100% - 3px) calc(100% - 3px),
+    calc(100% - 6px) calc(100% - 3px),
+    calc(100% - 6px) 100%,
+    6px 100%,
+    6px calc(100% - 3px),
+    3px calc(100% - 3px),
+    3px calc(100% - 6px),
+    0px calc(100% - 6px)
+  );
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   & > * {
-    margin: 16px 0px;
-  };
-  @media only screen and (max-width: 600px) {
-    padding: 0px 4px !important;
-    & > * {
-      margin: 4px 0px;
-    }
+    margin-top: 12px;
   }
 `
 
-export { StyledItemArrayContainer }
+export { StyledItemArrayContainer, BorderContainer, StyledContainer }

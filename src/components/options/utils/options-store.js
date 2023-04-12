@@ -6,11 +6,6 @@ const useOptionsStore = create((set, get) => ({
     set((state) => ({
       optionsState: input,
     })),
-  currentLayer: {},
-  setCurrentLayer: (layer) =>
-    set((state) => ({
-      currentLayer: layer,
-    })),
 }))
 
 export default useOptionsStore

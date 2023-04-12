@@ -1,7 +1,7 @@
 import React from 'react'
 import Options from './options'
-import HeadOptions from './head'
 import useOptionsStore from './utils/options-store'
+import ItemOptions from './item-options/item-options'
 
 const OptionsMenu = () => {
   const optionsState = useOptionsStore((state) => state.optionsState)
@@ -9,8 +9,8 @@ const OptionsMenu = () => {
   switch (optionsState) {
     case 'main':
       return <Options />
-    case 'head':
-      return <HeadOptions />
+    case 'item':
+      return <ItemOptions />
     default:
       return <></>
   }

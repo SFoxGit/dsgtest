@@ -25,7 +25,6 @@ export default function ItemComponent({ itemObj, layerArr, setLayerArr, layerInd
   const [color, setColor] = useState(itemObj.color)
   const [showOptions, setShowOptions] = useState(itemObj.isOpen)
   const [locked, setLocked] = useState(itemObj.isLocked || false)
-  // const { Accessories, Face, Feet, Hair, Hat, Lower, Upper } = data
   const itemName = itemObj.layerType
   const currentIndex = itemTypeOptions.indexOf(itemType)
   const currentColorIndex = colorOptions.indexOf(color)

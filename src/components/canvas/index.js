@@ -1,7 +1,68 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
+import mergeImages from 'merge-images'
+import useLayerStore from '../../utils/store'
 
-const Canvas = ({ srcImage, pixels }) => {
+const Canvas = ({ pixels }) => {
   const canvasRef = useRef(null)
+  const [imageConverted, setImageConverted] = useState('')
+  const layerArr = useLayerStore((state) => state.layerArr)
+
+  useEffect(() => {
+    const formatData = async () => {
+      const newArr = []
+      for (const layer of layerArr) {
+        // SkinTone has different pathing
+        if (layer.assetName) {
+          // Check to see if item has primary/secondary options
+          if (!layer.secondary) {
+            const importedImage = await import(
+              `../../assetsV3/${layer.layerType}/${layer.assetName}/${layer.color}`
+            )
+            layer.display && newArr.push(importedImage.default)
+          } else {
+            const importedImage = await import(
+              `../../assetsV3/${layer.layerType}/${layer.assetName}/primary_${layer.color}`
+            )
+            const importedSecondImage = await import(
+              `../../assetsV3/${layer.layerType}/${layer.assetName}/secondary_${layer.secondary}`
+            )
+            if (layer.display) {
+              newArr.push(importedImage.default)
+              newArr.push(importedSecondImage.default)
+            }
+          }
+        } else {
+          const importedImage = await import(
+            `../../assetsV3/${layer.layerType}/${layer.color}`
+          )
+          newArr.push(importedImage.default)
+        }
+        if (layer.additional.length > 0) {
+          for (const additionalLayer of layer.additional) {
+            if (!additionalLayer.secondary) {
+              const importedImage = await import(
+                `../../assetsV3/${additionalLayer.layerType}/${additionalLayer.assetName}/${additionalLayer.color}`
+              )
+              additionalLayer.display && newArr.push(importedImage.default)
+            } else {
+              const importedImage = await import(
+                `../../assetsV3/${additionalLayer.layerType}/${additionalLayer.assetName}/primary_${additionalLayer.color}`
+              )
+              const importedSecondImage = await import(
+                `../../assetsV3/${additionalLayer.layerType}/${additionalLayer.assetName}/secondary_${additionalLayer.secondary}`
+              )
+              if (additionalLayer.display) {
+                newArr.push(importedImage.default)
+                newArr.push(importedSecondImage.default)
+              }
+            }
+          }
+        }
+      }
+      mergeImages(newArr).then((res) => setImageConverted(res))
+    }
+    formatData()
+  }, [layerArr])
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -10,7 +71,7 @@ const Canvas = ({ srcImage, pixels }) => {
     const ctx = canvas.getContext('2d')
     canvas.width = test
     const img = new Image()
-    img.src = srcImage
+    img.src = imageConverted
     img.onload = () => {
       ctx.imageSmoothingEnabled = false
       ctx.mozImageSmoothingEnabled = false
@@ -19,8 +80,10 @@ const Canvas = ({ srcImage, pixels }) => {
       ctx.scale(scaling, scaling)
       ctx.drawImage(img, 0, 0)
     }
-  }, [srcImage, pixels])
-  return <canvas id='canvas' ref={canvasRef} height={pixels} width={pixels}></canvas>
+  }, [imageConverted, pixels])
+  return (
+    <canvas id='canvas' ref={canvasRef} height={pixels} width={pixels}></canvas>
+  )
 }
 
 export default Canvas

@@ -4,12 +4,26 @@
   font-family: 'Roboto', sans-serif;
 }
 
+body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
 #root {
-  min-width: 100vw;
   width: 100%;
-  min-height: 100vh;
   height: 100%;
   margin: 0;
   padding: 0;
-  background-color: #10E7DC;
+  background-color: #10e7dc;
+  overflow-x: hidden;
+}
+@font-face {
+  font-family: 'JoystixMonospace';
+  src: local('JoystixMonospace'),
+    url('./fonts/JoystixMonospace.ttf') format('truetype');
+  font-weight: bold;
+}
+
+.font-face-gm {
+  font-family: 'JoystixMonospace';
 }
