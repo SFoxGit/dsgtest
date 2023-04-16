@@ -9,11 +9,13 @@ import {
   InnerBorder,
   CanvasOutline,
   CanvasBackground,
-  LogoImage
+  LogoImage,
 } from './preview.style'
 import Canvas from '../canvas'
 import Inputs from './inputs/inputs'
 const Preview = () => {
+  const isDesktop = window.screen.width > 920
+
   return (
     <PreviewContainer>
       <OuterBorder>
@@ -26,8 +28,12 @@ const Preview = () => {
               </CanvasBackground>
             </CanvasOutline>
             <Inputs />
-            <RandomSaveContainer />
-            <ConnectWithUs />
+            {isDesktop && (
+              <>
+                <RandomSaveContainer />
+                <ConnectWithUs />
+              </>
+            )}
           </InnerContainer>
         </InnerBorder>
       </OuterBorder>

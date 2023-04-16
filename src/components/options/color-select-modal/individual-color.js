@@ -5,7 +5,7 @@ import colors from '../../../utils/colors'
 import BorderContainer from '../../border-container/border-container'
 import Tooltip from '@mui/material/Tooltip'
 
-const IndividualColor = ({ color, primary }) => {
+const IndividualColor = ({ color, primary, selection }) => {
   const setColor = useLayerStore((state) => state.setColor)
   const setSecondary = useLayerStore((state) => state.setSecondary)
   const [background, setBackground] = useState('white')
@@ -24,7 +24,7 @@ const IndividualColor = ({ color, primary }) => {
       onMouseEnter={() => setBackground('#bccccc')}
       onMouseLeave={() => setBackground('white')}
     >
-      <BorderContainer inner={background}>
+      <BorderContainer outer={color === selection ? '#c45508' : false} inner={background}>
         <Tooltip
           title={
             colors.find((colorObject) => colorObject.fileName === color).name

@@ -4,6 +4,7 @@ import Switch from '@mui/material/Switch'
 import Visible from '../../monochrome/borderless/visible.png'
 import Hidden from '../../monochrome/borderless/hidden.png'
 import useLayerStore from '../../utils/store'
+import Tooltip from '@mui/material/Tooltip'
 
 const VisibleIcon = styled.div`
   height: 40px;
@@ -22,16 +23,14 @@ const HiddenIcon = styled.div`
   background-size: 100% 100%;
 `
 const StyledContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   @media screen and (max-width: 900px) {
     grid-area: 1 / 1 / 2 / 3;
-    display: flex;
-    align-items: center;
-    justify-content: center;
   }
   @media screen and (min-width: 1320px) {
-    display: flex;
-    align-items: center;
-    margin-left: 20px;
+    grid-area: 1 / 1 / 2 / 2;
   }
 `
 const RandomSwitch = styled(Switch)(({ theme }) => ({
@@ -100,12 +99,16 @@ const DisplaySwitch = () => {
 
   return (
     <StyledContainer>
-      <HiddenIcon />
+      <Tooltip title='Hide asset from full preview'>
+        <HiddenIcon />
+      </Tooltip>
       <RandomSwitch
         checked={layerArr[selectedLayer].display}
         onChange={() => handleChange()}
       />
-      <VisibleIcon />
+      <Tooltip title='Show asset in full preview'>
+        <VisibleIcon />
+      </Tooltip>
     </StyledContainer>
   )
 }

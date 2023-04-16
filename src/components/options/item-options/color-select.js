@@ -5,7 +5,7 @@ import IndividualColor from '../color-select-modal/individual-color'
 import data from '../../../utils/dataV2'
 
 const ColorSelect = ({ currentLayer, primary }) => {
-  const { layerType, assetName } = currentLayer
+  const { layerType, assetName, color, secondary } = currentLayer
   const dataColors = data[layerType][assetName]
   const [options, setOptions] = useState()
   useEffect(() => {
@@ -35,11 +35,12 @@ const ColorSelect = ({ currentLayer, primary }) => {
   return (
     <BorderContainer>
       <InnerContainer>
-        {options?.map((color, index) => (
+        {options?.map((option, index) => (
           <IndividualColor
-            color={color}
+            color={option}
             key={'color#' + index}
             primary={primary}
+            selection={primary ? color : secondary}
           />
         ))}
       </InnerContainer>

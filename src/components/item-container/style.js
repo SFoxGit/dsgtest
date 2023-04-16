@@ -92,6 +92,9 @@ const StyledContainer = styled.div`
   align-items: center;
   & > * {
     margin-top: 12px;
+    @media screen and (max-width: 1320px) {
+      margin-top: 4px;
+    }
   }
 `
 

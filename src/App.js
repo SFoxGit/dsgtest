@@ -21,6 +21,10 @@ const theme = createTheme({
       main: '#FEFEFE',
       alternate: '#E2E9E8',
     },
+    orange: {
+      main: '#c45508',
+      alternate: '#0000A3',
+    },
     background: {
       default: '#262626', // Darkest
       alternate: '#44444c',

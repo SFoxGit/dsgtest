@@ -6,15 +6,12 @@ import useLayerStore from '../../../utils/store'
 import ColorSelectModal from '../color-select-modal/color-select-modal'
 
 import {
-  LeftColorContainer,
-  MiddleColor,
-  RightColorContainer,
   AssetPreview,
   AssetBorder,
   LeftArrow,
   RightArrow,
   ColorPreview,
-  ColorContainer,
+  SingleColorContainer,
   SecondaryContainer,
   ButtonContainer,
 } from './item-options.style'
@@ -23,12 +20,13 @@ const MultiColorSelector = ({
   primaryColor,
   setPrimaryColor,
   setSelectionType,
+  selectionType,
 }) => {
   const selectedLayer = useLayerStore((state) => state.selectedLayer)
   const layerArr = useLayerStore((state) => state.layerArr)
   const setSecondary = useLayerStore((state) => state.setSecondary)
   const [open, setOpen] = useState(false)
-  const isMobile = window.screen.width < 420
+  const isMobile = window.screen.width < 900
 
   const currentLayer = layerArr[selectedLayer]
   const dataColors = data[currentLayer.layerType][currentLayer.assetName]
@@ -86,38 +84,36 @@ const MultiColorSelector = ({
   }, [currentLayer.secondary])
 
   return (
-    <ColorContainer>
-      <SingleColorSelector
-        colorOptions={colorOptions}
-        primaryColor={primaryColor}
-        setPrimaryColor={setPrimaryColor}
-        inputWidth={6}
-        setSelectionType={setSelectionType}
-      />
-      <SecondaryContainer item container xs={12} lg={6}>
-        <LeftColorContainer item xs={3}>
-          <ButtonContainer onClick={() => decrementSecondaryColor()}>
-            <LeftArrow />
-          </ButtonContainer>
-        </LeftColorContainer>
-        <MiddleColor item xs={6}>
-          <AssetBorder>
-            <AssetPreview
-              onClick={
-                isMobile
-                  ? () => setOpen(true)
-                  : () => setSelectionType('colorSecondary')
-              }
-            >
-              {colorHex && <ColorPreview color={colorHex} />}
-            </AssetPreview>
-          </AssetBorder>
-        </MiddleColor>
-        <RightColorContainer item xs={3}>
-          <ButtonContainer onClick={() => incrementSecondaryColor()}>
-            <RightArrow />
-          </ButtonContainer>
-        </RightColorContainer>
+    <>
+      <SingleColorContainer>
+        <SingleColorSelector
+          colorOptions={colorOptions}
+          primaryColor={primaryColor}
+          setPrimaryColor={setPrimaryColor}
+          inputWidth={6}
+          setSelectionType={setSelectionType}
+          selectionType={selectionType}
+        />
+      </SingleColorContainer>
+
+      <SecondaryContainer item xs={12}>
+        <ButtonContainer onClick={() => decrementSecondaryColor()}>
+          <LeftArrow />
+        </ButtonContainer>
+        <AssetBorder isSelected={selectionType === 'colorSecondary'}>
+          <AssetPreview
+            onClick={
+              isMobile
+                ? () => setOpen(true)
+                : () => setSelectionType('colorSecondary')
+            }
+          >
+            {colorHex && <ColorPreview color={colorHex} />}
+          </AssetPreview>
+        </AssetBorder>
+        <ButtonContainer onClick={() => incrementSecondaryColor()}>
+          <RightArrow />
+        </ButtonContainer>
       </SecondaryContainer>
       <ColorSelectModal
         open={open}
@@ -125,7 +121,7 @@ const MultiColorSelector = ({
         options={secondaryColorOptions}
         primary={false}
       />
-    </ColorContainer>
+    </>
   )
 }
 

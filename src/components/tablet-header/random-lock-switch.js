@@ -4,6 +4,7 @@ import Switch from '@mui/material/Switch'
 import Random from '../../monochrome/borderless/random.png'
 import Locked from '../../monochrome/borderless/locked.png'
 import useLayerStore from '../../utils/store'
+import Tooltip from '@mui/material/Tooltip'
 
 const RandomIcon = styled.div`
   height: 40px;
@@ -22,13 +23,12 @@ const LockIcon = styled.div`
   background-size: 100% 100%;
 `
 const StyledContainer = styled.div`
+  grid-area: 1 / 2 / 2 / 3;
   display: flex;
   align-items: center;
+  justify-content: center;
   @media screen and (max-width: 900px) {
     grid-area: 1 / 3 / 2 / 5;
-    display: flex;
-    align-items: center;
-    justify-content: center;
   }
 `
 
@@ -98,12 +98,16 @@ const RandomLockSwitch = () => {
 
   return (
     <StyledContainer>
-      <LockIcon />
+      <Tooltip title='Asset may be randomized'>
+        <RandomIcon />
+      </Tooltip>
       <RandomSwitch
         checked={layerArr[selectedLayer].isLocked}
         onChange={() => handleChange()}
       />
-      <RandomIcon />
+      <Tooltip title='Lock asset from randomizer'>
+        <LockIcon />
+      </Tooltip>
     </StyledContainer>
   )
 }

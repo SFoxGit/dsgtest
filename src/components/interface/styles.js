@@ -9,9 +9,10 @@ const ImageHoldingGrid = styled.div`
 
 const InterfaceContainer = styled.div`
   width: 100%;
+  padding: 8px;
   display: grid;
   grid-template-columns: 1fr 4fr;
-  grid-template-rows: 9fr 2fr 10fr;
+  grid-template-rows: 9fr 2fr 10fr 2fr 1fr;
   grid-column-gap: 4px;
   grid-row-gap: 4px;
   @media screen and (min-width: 1320px) {

@@ -3,7 +3,7 @@ import { InnerContainer } from './item-select-style'
 import BorderContainer from '../../border-container/border-container'
 import IndividualAsset from '../item-select-modal/individual-asset'
 
-const ItemSelect = ({ options, layerType }) => {
+const ItemSelect = ({ options, layerType, itemType }) => {
   return (
     <BorderContainer>
       <InnerContainer>
@@ -12,6 +12,7 @@ const ItemSelect = ({ options, layerType }) => {
             asset={asset}
             layerType={layerType}
             key={'asset#' + index}
+            isSelected={itemType === asset}
           />
         ))}
       </InnerContainer>

@@ -105,9 +105,11 @@ const StyledContainer = styled.div`
     grid-template-rows: repeat(2, 1fr);
   }
   @media screen and (min-width: 1320px) {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(2, 2fr) repeat(4, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
   }
   & > * {
     image-rendering: pixelated;
@@ -117,6 +119,7 @@ const CloseContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  grid-area: 1 / 6 / 2 / 7;
   @media screen and (max-width: 900px) {
     grid-area: 2 / 4 / 3 / 5;
   }
@@ -128,7 +131,6 @@ const CloseButton = styled.div`
   background-repeat: no-repeat;
   background-position: center;
   background-size: 100% 100%;
-  margin-right: 20px;
 `
 
 const HideButton = styled(HideSourceSharpIcon)`
@@ -144,6 +146,7 @@ const DeleteContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  grid-area: 1 / 5 / 2 / 6;
   @media screen and (max-width: 900px) {
     grid-area: 2 / 3 / 3 / 4;
   }
@@ -161,6 +164,7 @@ const UpContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  grid-area: 1 / 3 / 2 / 4;
   @media screen and (max-width: 900px) {
     grid-area: 2 / 1 / 3 / 2;
   }
@@ -181,6 +185,7 @@ const DownContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  grid-area: 1 / 4 / 2 / 5;
   @media screen and (max-width: 900px) {
     grid-area: 2 / 2 / 3 / 3;
   }
@@ -193,6 +198,40 @@ const DownButton = styled.div`
   background-repeat: no-repeat;
   background-position: center;
   background-size: 100% 100%;
+`
+
+const ButtonContainer = styled.div`
+  height: 48px;
+  width: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  clip-path: polygon(
+    0px 6px,
+    3px 6px,
+    3px 3px,
+    6px 3px,
+    6px 0px,
+    calc(100% - 6px) 0px,
+    calc(100% - 6px) 3px,
+    calc(100% - 3px) 3px,
+    calc(100% - 3px) 6px,
+    100% 6px,
+    100% calc(100% - 6px),
+    calc(100% - 3px) calc(100% - 6px),
+    calc(100% - 3px) calc(100% - 3px),
+    calc(100% - 6px) calc(100% - 3px),
+    calc(100% - 6px) 100%,
+    6px 100%,
+    6px calc(100% - 3px),
+    3px calc(100% - 3px),
+    3px calc(100% - 6px),
+    0px calc(100% - 6px)
+  );
+  &:hover {
+    cursor: pointer;
+    background-color: ${({ theme }) => theme.palette.primary.alternate};
+  }
 `
 
 export {
@@ -210,4 +249,5 @@ export {
   DeleteContainer,
   UpContainer,
   DownContainer,
+  ButtonContainer
 }

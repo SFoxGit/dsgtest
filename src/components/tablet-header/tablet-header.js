@@ -3,6 +3,7 @@ import useOptionsStore from '../options/utils/options-store'
 import RandomLockSwitch from './random-lock-switch'
 import DisplaySwitch from './display-switch'
 import useLayerStore from '../../utils/store'
+import Tooltip from '@mui/material/Tooltip'
 
 import {
   GridArea,
@@ -17,6 +18,7 @@ import {
   DeleteContainer,
   UpContainer,
   DownContainer,
+  ButtonContainer,
 } from './tablet-header.style'
 
 const TabletHeader = () => {
@@ -56,19 +58,35 @@ const TabletHeader = () => {
               <RandomLockSwitch />
               {selectedLayer > 1 && (
                 <UpContainer>
-                  <UpButton onClick={() => moveUp()} />
+                  <ButtonContainer>
+                    <Tooltip title='Move layer up'>
+                      <UpButton onClick={() => moveUp()} />
+                    </Tooltip>
+                  </ButtonContainer>
                 </UpContainer>
               )}
               {selectedLayer < layerArr.length - 1 && (
                 <DownContainer>
-                  <DownButton onClick={() => moveDown()} />
+                  <ButtonContainer>
+                    <Tooltip title='Move layer down'>
+                      <DownButton onClick={() => moveDown()} />
+                    </Tooltip>
+                  </ButtonContainer>
                 </DownContainer>
               )}
               <DeleteContainer>
-                <DeleteButton onClick={() => deleteLayer()} />
+                <ButtonContainer>
+                  <Tooltip title='Delete layer'>
+                    <DeleteButton onClick={() => deleteLayer()} />
+                  </Tooltip>
+                </ButtonContainer>
               </DeleteContainer>
               <CloseContainer>
-                <CloseButton onClick={() => setOptionsState('main')} />
+                <ButtonContainer>
+                  <Tooltip title='Close item options and return to add new layer screen'>
+                    <CloseButton onClick={() => setOptionsState('main')} />
+                  </Tooltip>
+                </ButtonContainer>
               </CloseContainer>
             </StyledContainer>
           )}

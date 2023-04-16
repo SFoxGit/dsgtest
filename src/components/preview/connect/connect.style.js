@@ -12,6 +12,11 @@ const ConnectContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
+  @media screen and (max-width: 1320px) {
+    grid-area: 5 / 1 / 6 / 3;
+    width: calc(100% - 32px);
+    padding: 8px 16px;
+  } ;
 `
 const IconsContainer = styled.div`
   width: calc(100% - 120px);
@@ -67,6 +72,19 @@ const Email = styled.div`
   background-size: 100% 100%;
   image-rendering: pixelated;
 `
+const ButtonContainer = styled.div`
+  height: 48px !important;
+  width: 48px !important;
+  &:hover {
+    cursor: pointer;
+    & > * {
+      background-color: ${({ theme }) => theme.palette.primary.alternate};
+      & > * {
+        background-color: ${({ theme }) => theme.palette.secondary.main};
+      }
+    }
+  }
+`
 
 export {
   ConnectContainer,
@@ -76,4 +94,5 @@ export {
   Patreon,
   Discord,
   Email,
+  ButtonContainer
 }

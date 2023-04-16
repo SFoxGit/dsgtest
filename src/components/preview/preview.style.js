@@ -92,6 +92,9 @@ const InnerContainer = styled.div`
     3px calc(100% - 6px),
     0px calc(100% - 6px)
   );
+  @media screen and (max-width: 1320px) {
+    padding: 0px 4px 20px;
+  } ;
 `
 const CanvasOutline = styled.div`
   width: 250px;
@@ -154,7 +157,8 @@ const CanvasBackground = styled.div`
   );
 `
 const PreviewContainer = styled.div`
-  grid-area: 1 / 1 / 2 / 2;
+  grid-area: 1 / 1 / 2 / 3;
+  min-height: 690px;
   @media screen and (min-width: 1320px) {
     grid-area: 1 / 1 / 3 / 2;
   } ;

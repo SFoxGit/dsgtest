@@ -8,7 +8,9 @@ import {
   LeftArrow,
   RightArrow,
   ColorPreview,
-  PreviewContainer
+  PreviewContainer,
+  ButtonContainer,
+  InnerContainer,
 } from './eyes.style'
 
 const SkinColors = [
@@ -73,13 +75,21 @@ const Skin = () => {
   return (
     <EyesContainer>
       <TextContainer className='font-face-gm'>Skin</TextContainer>
-      <LeftArrow onClick={() => IncrementSkinColor()} />
+      <ButtonContainer onClick={() => DecrementSkinColor()}>
+        <InnerContainer>
+          <LeftArrow />
+        </InnerContainer>
+      </ButtonContainer>
       <PreviewContainer>
         <DarkBorder>
           <ColorPreview hex={hex} />
         </DarkBorder>
       </PreviewContainer>
-      <RightArrow onClick={() => DecrementSkinColor()} />
+      <ButtonContainer onClick={() => IncrementSkinColor()}>
+        <InnerContainer>
+          <RightArrow />
+        </InnerContainer>
+      </ButtonContainer>
     </EyesContainer>
   )
 }

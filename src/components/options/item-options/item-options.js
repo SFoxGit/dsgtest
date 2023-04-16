@@ -100,15 +100,22 @@ const ItemOptions = () => {
       <BorderContainer>
         <ItemOptionsContainer>
           <AssetContainer>
-            <ButtonContainer onClick={() => decrementAsset()} >
+            <ButtonContainer onClick={() => decrementAsset()}>
               <LeftArrow />
             </ButtonContainer>
-            <AssetBorder onClick={isMobile ? () => setModalState(true) : () => setSelectionType('asset')}>
+            <AssetBorder
+              onClick={
+                isMobile
+                  ? () => setModalState(true)
+                  : () => setSelectionType('asset')
+              }
+              isSelected={selectionType === 'asset'}
+            >
               <AssetPreview>
                 {image && <AssetImage importedImage={image} />}
               </AssetPreview>
             </AssetBorder>
-            <ButtonContainer onClick={() => incrementAsset()} >
+            <ButtonContainer onClick={() => incrementAsset()}>
               <RightArrow />
             </ButtonContainer>
           </AssetContainer>
@@ -117,6 +124,7 @@ const ItemOptions = () => {
               primaryColor={primaryColor}
               setPrimaryColor={setPrimaryColor}
               setSelectionType={setSelectionType}
+              selectionType={selectionType}
             />
           ) : (
             <ColorContainer>
@@ -126,13 +134,14 @@ const ItemOptions = () => {
                 setPrimaryColor={setPrimaryColor}
                 inputWidth={12}
                 setSelectionType={setSelectionType}
+                selectionType={selectionType}
               />
             </ColorContainer>
           )}
           {!isMobile ? (
             <AssetSelectContainer>
               {selectionType === 'asset' && (
-                <ItemSelect options={itemTypeOptions} layerType={layerType} />
+                <ItemSelect options={itemTypeOptions} layerType={layerType} itemType={itemType} />
               )}
               {selectionType === 'colorPrimary' && (
                 <ColorSelect currentLayer={currentLayer} primary={true} />

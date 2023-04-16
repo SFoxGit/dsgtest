@@ -34,7 +34,7 @@ const OuterContainer = styled.div`
 const StyledBorder = styled.div`
   width: calc(100% - 6px);
   height: calc(100% - 6px);
-  background-color: ${({ theme }) => theme.palette.secondary.main};
+  background-color: ${({ outer, theme }) => outer ? outer : theme.palette.secondary.main};
   display: flex;
   justify-content: center;
   align-items: center;

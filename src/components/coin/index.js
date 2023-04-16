@@ -7,6 +7,7 @@ import useOptionsStore from '../options/utils/options-store'
 const Coin = ({ type, asset, color, index }) => {
   const moveLayer = useLayerStore((state) => state.moveLayer)
   const setSelectedLayer = useLayerStore((state) => state.setSelectedLayer)
+  const selectedLayer = useLayerStore((state) => state.selectedLayer)
   const setOptionsState = useOptionsStore((state) => state.setOptionsState)
   const handleCoinClick = () => {
     setSelectedLayer(index)
@@ -61,7 +62,7 @@ const Coin = ({ type, asset, color, index }) => {
   }, [type, asset, color])
 
   return (
-    <BorderContainer ref={dragDropRef} onClick={() => handleCoinClick()} isDragging={isDragging}>
+    <BorderContainer ref={dragDropRef} onClick={() => handleCoinClick()} isDragging={isDragging} isSelected={selectedLayer === index}>
       <StyledContainer>
         {image && <StyledAsset importedImage={image} alt='asset-preview' />}
       </StyledContainer>

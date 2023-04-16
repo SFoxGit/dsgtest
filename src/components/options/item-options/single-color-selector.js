@@ -4,9 +4,6 @@ import useLayerStore from '../../../utils/store'
 import ColorSelectModal from '../color-select-modal/color-select-modal'
 
 import {
-  LeftColorContainer,
-  MiddleColor,
-  RightColorContainer,
   AssetPreview,
   AssetBorder,
   LeftArrow,
@@ -21,6 +18,7 @@ const SingleColorSelector = ({
   primaryColor,
   setPrimaryColor,
   setSelectionType,
+  selectionType
 }) => {
   const [colorHex, setColorHex] = useState(
     colors.find((colorObject) => colorObject.fileName === primaryColor).hex
@@ -28,7 +26,7 @@ const SingleColorSelector = ({
   const [open, setOpen] = useState(false)
   const setColor = useLayerStore((state) => state.setColor)
   const currentColorIndex = colorOptions.indexOf(primaryColor)
-  const isMobile = window.screen.width < 420
+  const isMobile = window.screen.width < 900
 
   const incrementColor = () => {
     if (currentColorIndex === colorOptions.length - 1) {
@@ -55,30 +53,24 @@ const SingleColorSelector = ({
     setColorHex(colorObject ? colorObject.hex : colors[0].hex)
   }, [primaryColor])
   return (
-    <PrimaryContainer item container xs={12} lg={6}>
-      <LeftColorContainer item xs={3}>
-        <ButtonContainer onClick={() => decrementColor()}>
-          <LeftArrow />
-        </ButtonContainer>
-      </LeftColorContainer>
-      <MiddleColor item xs={6}>
-        <AssetBorder>
-          <AssetPreview
-            onClick={
-              isMobile
-                ? () => setOpen(true)
-                : () => setSelectionType('colorPrimary')
-            }
-          >
-            {colorHex && <ColorPreview color={colorHex} />}
-          </AssetPreview>
-        </AssetBorder>
-      </MiddleColor>
-      <RightColorContainer item xs={3}>
-        <ButtonContainer onClick={() => incrementColor()}>
-          <RightArrow />
-        </ButtonContainer>
-      </RightColorContainer>
+    <PrimaryContainer item xs={12}>
+      <ButtonContainer onClick={() => decrementColor()}>
+        <LeftArrow />
+      </ButtonContainer>
+      <AssetBorder isSelected={selectionType === 'colorPrimary'}>
+        <AssetPreview
+          onClick={
+            isMobile
+              ? () => setOpen(true)
+              : () => setSelectionType('colorPrimary')
+          }
+        >
+          {colorHex && <ColorPreview color={colorHex} />}
+        </AssetPreview>
+      </AssetBorder>
+      <ButtonContainer onClick={() => incrementColor()}>
+        <RightArrow />
+      </ButtonContainer>
       <ColorSelectModal
         open={open}
         onClose={() => setOpen(false)}

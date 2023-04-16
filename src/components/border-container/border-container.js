@@ -8,7 +8,7 @@ import {
 const BorderContainer = (props) => {
   return (
     <OuterContainer>
-      <StyledBorder>
+      <StyledBorder outer={props.outer}>
         <InnerContainer inner={props.inner}>{props.children}</InnerContainer>
       </StyledBorder>
     </OuterContainer>

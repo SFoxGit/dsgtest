@@ -62,9 +62,6 @@ const InnerContainer = styled.div`
     3px calc(100% - 6px),
     0px calc(100% - 6px)
   );
-  & > * {
-    margin: 4px;
-  }
 `
 const TextContainer = styled.div`
   color: ${({ theme }) => theme.palette.white.main};
@@ -105,7 +102,43 @@ const EyesContainer = styled.div`
   justify-content: center;
   align-items: center;
   & > * {
-    margin-right: 8px;
+    margin-right: 12px;
+  }
+`
+const ButtonContainer = styled.div`
+  height: 48px;
+  width: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  clip-path: polygon(
+    0px 6px,
+    3px 6px,
+    3px 3px,
+    6px 3px,
+    6px 0px,
+    calc(100% - 6px) 0px,
+    calc(100% - 6px) 3px,
+    calc(100% - 3px) 3px,
+    calc(100% - 3px) 6px,
+    100% 6px,
+    100% calc(100% - 6px),
+    calc(100% - 3px) calc(100% - 6px),
+    calc(100% - 3px) calc(100% - 3px),
+    calc(100% - 6px) calc(100% - 3px),
+    calc(100% - 6px) 100%,
+    6px 100%,
+    6px calc(100% - 3px),
+    3px calc(100% - 3px),
+    3px calc(100% - 6px),
+    0px calc(100% - 6px)
+  );
+  &:hover {
+    cursor: pointer;
+    background-color: ${({ theme }) => theme.palette.primary.alternate};
+    & > * {
+      background-color: ${({ theme }) => theme.palette.secondary.main};
+    }
   }
 `
 export {
@@ -116,5 +149,6 @@ export {
   RightArrow,
   ColorPreview,
   PreviewContainer,
-  EyesContainer
+  EyesContainer,
+  ButtonContainer,
 }

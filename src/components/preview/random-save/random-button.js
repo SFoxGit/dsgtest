@@ -6,6 +6,7 @@ import styled from '@emotion/styled'
 import randomIcon from '../../../monochrome/light-borderless/random.png'
 import { PreviewContainer } from './index.style'
 import DarkBorder from '../../border-container/dark-border-container'
+import Tooltip from '@mui/material/Tooltip'
 
 const RandomIcon = styled.div`
   width: 48px;
@@ -39,7 +40,9 @@ const RandomButton = () => {
   return (
     <PreviewContainer onClick={() => randomizer()}>
       <DarkBorder>
-        <RandomIcon />
+        <Tooltip title='Randomize all unlocked layers'>
+          <RandomIcon />
+        </Tooltip>
       </DarkBorder>
     </PreviewContainer>
   )

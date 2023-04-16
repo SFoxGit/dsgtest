@@ -4,7 +4,7 @@ import useLayerStore from '../../../utils/store'
 import BorderContainer from '../../border-container/border-container'
 import Tooltip from '@mui/material/Tooltip'
 
-const IndividualAsset = ({ asset, layerType }) => {
+const IndividualAsset = ({ asset, layerType, isSelected }) => {
   const setAsset = useLayerStore((state) => state.setAsset)
   const [image, setImage] = useState()
   const [background, setBackground] = useState('white')
@@ -28,7 +28,10 @@ const IndividualAsset = ({ asset, layerType }) => {
       onMouseEnter={() => setBackground('#bccccc')}
       onMouseLeave={() => setBackground('white')}
     >
-      <BorderContainer inner={background}>
+      <BorderContainer
+        outer={isSelected ? '#c45508' : false}
+        inner={background}
+      >
         <Tooltip title={asset} arrow>
           <div>
             <AssetImage importedImage={image} />

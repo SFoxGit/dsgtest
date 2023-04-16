@@ -90,6 +90,10 @@ const StyledOptionsContainer = styled.div`
         3px calc(100% - 6px),
         0px calc(100% - 6px)
       );
+      &:hover {
+        cursor: pointer;
+        background-color: ${({ theme }) => theme.palette.primary.alternate};
+      }
     }
   }
   @media screen and (max-width: 1320px) {
@@ -105,6 +109,7 @@ const StyledOptionsContainer = styled.div`
     grid-template-rows: repeat(4, 1fr);
     grid-column-gap: 20px;
     grid-row-gap: 20px;
+    height: calc(100% - 100px);
   } ;
 `
 

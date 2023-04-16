@@ -10,6 +10,8 @@ import {
   LeftArrow,
   RightArrow,
   ColorPreview,
+  ButtonContainer,
+  InnerContainer,
 } from './eyes.style'
 const Eyes = () => {
   const addLayer = useLayerStore((state) => state.addLayer)
@@ -93,13 +95,21 @@ const Eyes = () => {
   return (
     <EyesContainer>
       <TextContainer className='font-face-gm'>Eyes</TextContainer>
-      <LeftArrow onClick={() => DecrementEyeColor()} />
+      <ButtonContainer onClick={() => DecrementEyeColor()}>
+        <InnerContainer>
+          <LeftArrow />
+        </InnerContainer>
+      </ButtonContainer>
       <PreviewContainer>
         <DarkBorder>
           <ColorPreview hex={hex} />
         </DarkBorder>
       </PreviewContainer>
-      <RightArrow onClick={() => IncrementEyeColor()} />
+      <ButtonContainer onClick={() => IncrementEyeColor()}>
+        <InnerContainer>
+          <RightArrow />
+        </InnerContainer>
+      </ButtonContainer>
     </EyesContainer>
   )
 }

@@ -6,6 +6,12 @@ const OuterContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  @media screen and (max-width: 1320px) {
+    margin-top: 16px;
+    grid-area: 4 / 1 / 5 / 3;
+    width: calc(100% - 32px);
+    padding: 8px 16px;
+  } ;
 `
 const InnerContainer = styled.div`
   width: 100%;
@@ -17,6 +23,15 @@ const InnerContainer = styled.div`
 const PreviewContainer = styled.div`
   height: 64px;
   width: 64px;
+  &:hover {
+    cursor: pointer;
+    & > * {
+      background-color: ${({ theme }) => theme.palette.primary.alternate};
+      & > * {
+        background-color: ${({ theme }) => theme.palette.secondary.main};
+      }
+    }
+  }
 `
 
 export { OuterContainer, InnerContainer, PreviewContainer }

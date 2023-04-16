@@ -3,7 +3,7 @@ import styled from '@emotion/styled'
 const BorderContainer = styled.div`
   width: 46px;
   height: 46px;
-  background-color: ${({ theme }) => theme.palette.secondary.main};
+  background-color: ${({ isSelected, theme }) => isSelected ? theme.palette.orange.main : theme.palette.secondary.main};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -61,6 +61,10 @@ const StyledContainer = styled.div`
     3px calc(100% - 6px),
     0px calc(100% - 6px)
   );
+  &:hover {
+    cursor: pointer;
+    background-color: ${({ theme }) => theme.palette.primary.alternate};
+  }
 `
 const StyledAsset = styled.div`
   width: 30px;
