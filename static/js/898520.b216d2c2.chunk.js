@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkdsg=self.webpackChunkdsg||[]).push([[898520],{898520:(e,s,p)=>{e.exports=p.p+"static/media/primary_Cinder.90271fce7b80be57e1cd.png"}}]);
