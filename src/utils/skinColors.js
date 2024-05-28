@@ -1,0 +1,25 @@
+const SkinColors = [
+  { name: 'Beige', hex: '#e5b770', fileName: 'primary_Beige.png' },
+  { name: 'Brick', hex: '#8f6e4d', fileName: 'primary_Brick.png' },
+  { name: 'Bronze', hex: '#ce955c', fileName: 'primary_Bronze.png' },
+  { name: 'Caucasian', hex: '#e6c8aa', fileName: 'primary_Caucasian.png' },
+  { name: 'Celestial', hex: '#98b0d8', fileName: 'primary_Celestial.png' },
+  { name: 'Chestnut', hex: '#754a27', fileName: 'primary_Chestnut.png' },
+  { name: 'Chocolate', hex: '#4c2a1e', fileName: 'primary_Chocolate.png' },
+  { name: 'Cinder', hex: '#343434', fileName: 'primary_Cinder.png' },
+  { name: 'Dust', hex: '#706e54', fileName: 'primary_Dust.png' },
+  { name: 'Grey', hex: '#7b7b7b', fileName: 'primary_Grey.png' },
+  { name: 'Honey', hex: '#a38836', fileName: 'primary_Honey.png' },
+  { name: 'Jade', hex: '#2e9b5b', fileName: 'primary_Jade.png' },
+  { name: 'Lavender', hex: '#81478e', fileName: 'primary_Lavender.png' },
+  { name: 'Olive', hex: '#967644', fileName: 'primary_Olive.png' },
+  { name: 'Pale', hex: '#f3d6ba', fileName: 'primary_Pale.png' },
+  { name: 'Porcelain', hex: '#f4eef2', fileName: 'primary_Porcelain.png' },
+  { name: 'Sanguine', hex: '#9a2424', fileName: 'primary_Sanguine.png' },
+  { name: 'Skeleton', hex: '#d4d7b1', fileName: 'primary_Skeleton.png' },
+  { name: 'Storm', hex: '#3b4c67', fileName: 'primary_Storm.png' },
+  { name: 'Sunbeam', hex: '#e4e96d', fileName: 'primary_Sunbeam.png' },
+  { name: 'Swarthy', hex: '#8f6527', fileName: 'primary_Swarthy.png' },
+]
+
+export default SkinColors
