@@ -1,0 +1,1 @@
+const A="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACMAAAAjCAYAAAAe2bNZAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAXUlEQVRYhe3XoQGAMBDAwC/ToVkbzQJ4XCnysZhUlopkgrMpmRmztPwN+CaGEkOJocRQYigxlBhKDCWGEkN1Mdex5bmvw/ahi7lbi1qfUZYofhMkhhJDiaHEUFNhXhDvEgah+Xy+AAAAAElFTkSuQmCC";export{A as default};
