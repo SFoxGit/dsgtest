@@ -1,0 +1,308 @@
+// Define the color pairs
+
+// Black to Blue
+var colorPairs1 = [
+  ['#424242', '#42579e'],
+  ['#3d3d3d', '#394e93'],
+  ['#393939', '#334789'],
+  ['#343434', '#2f4280'],
+  ['#2e2e2e', '#273b7e'],
+  ['#262626', '#1d2f69'],
+];
+
+//Blue to Bone
+var colorPairs2 = [
+  ['#42579e', '#d4d7b1'],
+  ['#394e93', '#c7cba4'],
+  ['#334789', '#bbbf96'],
+  ['#2f4280', '#aeb28a'],
+  ['#273b7e', '#a3a77e'],
+  ['#1d2f69', '#9a9e74'],
+];
+
+//Bone to Brown
+var colorPairs3 = [
+  ['#d4d7b1', '#56541e'],
+  ['#c7cba4', '#594511'],
+  ['#bbbf96', '#4e3c0f'],
+  ['#aeb28a', '#48370b'],
+  ['#a3a77e', '#413109'],
+  ['#9a9e74', '#372a06'],
+];
+
+//Brown to Copper
+var colorPairs4 = [
+  ['#56541e', '#976432'],
+  ['#594511', '#885829'],
+  ['#4e3c0f', '#805123'],
+  ['#48370b', '#794b1e'],
+  ['#413109', '#6f4218'],
+  ['#372a06', '#613811'],
+];
+
+//Copper to Crimson
+var colorPairs5 = [
+  ['#976432', '#7b1d1d'],
+  ['#885829', '#741b1b'],
+  ['#805123', '#6d1818'],
+  ['#794b1e', '#641515'],
+  ['#6f4218', '#5b1212'],
+  ['#613811', '#4b0c0c'],
+];
+
+//Crimson to Eggshell
+var colorPairs6 = [
+  ['#7b1d1d', '#f5f5dc'],
+  ['#741b1b', '#d4d7b1'],
+  ['#6d1818', '#c7cba4'],
+  ['#641515', '#bbb386'],
+  ['#5b1212', '#aeb28a'],
+  ['#4b0c0c', '#a3a77e'],
+];
+
+//Eggshell to Flame
+var colorPairs7 = [
+  ['#f5f5dc', '#ff9e2c'],
+  ['#d4d7b1', '#f19427'],
+  ['#c7cba4', '#e18921'],
+  ['#bbb386', '#d47e19'],
+  ['#aeb28a', '#c77311'],
+  ['#a3a77e', '#b0641e'],
+];
+
+//Flame to Gold
+var colorPairs8 = [
+  ['#ff9e2c', '#ecd451'],
+  ['#f19427', '#e1ca47'],
+  ['#e18921', '#d5be3e'],
+  ['#d47e19', '#cbb435'],
+  ['#c77311', '#c5ae2e'],
+  ['#b0641e', '#b69f23'],
+];
+
+//Gold to Green
+var colorPairs9 = [
+  ['#ecd451', '#2d9055'],
+  ['#e1ca47', '#237d47'],
+  ['#d5be3e', '#1f6b3e'],
+  ['#cbb435', '#1a6237'],
+  ['#c5ae2e', '#13572f'],
+  ['#b69f23', '#0f4d28'],
+];
+
+//Green to Maroon
+var colorPairs10 = [
+  ['#2d9055', '#8d3e3e'],
+  ['#237d47', '#803434'],
+  ['#1f6b3e', '#742b2b'],
+  ['#1a6237', '#6d2626'],
+  ['#13572f', '#682323'],
+  ['#0f4d28', '#5f1d1d'],
+];
+
+//Maroon to Mint
+var colorPairs11 = [
+  ['#8d3e3e', '#acb8a9'],
+  ['#803434', '#9dac98'],
+  ['#742b2b', '#91a48c'],
+  ['#6d2626', '#869e80'],
+  ['#682323', '#7d9677'],
+  ['#5f1d1d', '#678260'],
+];
+
+//Mint to Night
+var colorPairs12 = [
+  ['#acb8a9', '#435570'],
+  ['#9dac98', '#3b4c67'],
+  ['#91a48c', '#35455f'],
+  ['#869e80', '#2e3e57'],
+  ['#7d9677', '#27364d'],
+  ['#678260', '#202d42'],
+];
+
+//Night to Pink
+var colorPairs13 = [
+  ['#435570', '#e2b1ba'],
+  ['#3b4c67', '#daaab3'],
+  ['#35455f', '#d1a1aa'],
+  ['#2e3e57', '#c4949c'],
+  ['#27364d', '#bb8992'],
+  ['#202d42', '#ae7b84'],
+];
+
+//Pink to Purple
+var colorPairs14 = [
+  ['#e2b1ba', '#692f7b'],
+  ['#daaab3', '#612773'],
+  ['#d1a1aa', '#581f69'],
+  ['#c4949c', '#4e195e'],
+  ['#bb8992', '#421151'],
+  ['#ae7b84', '#3b0e49'],
+];
+
+//Purple to Red
+var colorPairs15 = [
+  ['#692f7b', '#b52c37'],
+  ['#612773', '#a7232d'],
+  ['#581f69', '#981b25'],
+  ['#4e195e', '#8a1822'],
+  ['#421151', '#83151d'],
+  ['#3b0e49', '#700d15'],
+];
+
+//Red to Sea
+var colorPairs16 = [
+  ['#b52c37', '#7498be'],
+  ['#a7232d', '#6c90b6'],
+  ['#981b25', '#6287ad'],
+  ['#8a1822', '#597ea4'],
+  ['#83151d', '#507399'],
+  ['#700d15', '#43658a'],
+];
+
+//Sea to Silver
+var colorPairs17 = [
+  ['#7498be', '#daedec'],
+  ['#6c90b6', '#cce1e0'],
+  ['#6287ad', '#bacac9'],
+  ['#597ea4', '#afc0bf'],
+  ['#507399', '#a5b7b6'],
+  ['#43658a', '#8ba2a1'],
+];
+
+//Silver to Sky
+var colorPairs18 = [
+  ['#daedec', '#6eb6ff'],
+  ['#cce1e0', '#49a4ff'],
+  ['#bacac9', '#2491ff'],
+  ['#afc0bf', '#1280ec'],
+  ['#a5b7b6', '#006eda'],
+  ['#8ba2a1', '#0060bf'],
+];
+
+//Sky to Stone
+var colorPairs19 = [
+  ['#6eb6ff', '#878787'],
+  ['#49a4ff', '#767777'],
+  ['#2491ff', '#686a6b'],
+  ['#1280ec', '#5b5e5f'],
+  ['#006eda', '#4e5254'],
+  ['#0060bf', '#404648'],
+];
+
+//Stone to Tan
+var colorPairs20 = [
+  ['#878787', '#afa795'],
+  ['#767777', '#f9f5f7'],
+  ['#686a6b', '#f4eef2'],
+  ['#5b5e5f', '#efe7ec'],
+  ['#4e5254', '#e6d8e1'],
+  ['#404648', '#d2c2cc'],
+];
+
+//Tan to White
+var colorPairs21 = [
+  ['#afa795', '#ffffff'],
+  ['#f9f5f7', '#f9f5f7'],
+  ['#f4eef2', '#f4eef2'],
+  ['#efe7ec', '#efe7ec'],
+  ['#e6d8e1', '#e6d8e1'],
+  ['#d2c2cc', '#d2c2cc'],
+];
+
+//White to Wood
+var colorPairs22 = [
+  ['#ffffff', '#c19a6b'],
+  ['#f9f5f7', '#b89264'],
+  ['#f4eef2', '#9f957f'],
+  ['#efe7ec', '#a07d53'],
+  ['#e6d8e1', '#96744b'],
+  ['#d2c2cc', '#82623c'],
+];
+
+//Wood to Yellow
+var colorPairs23 = [
+  ['#c19a6b', '#fbf8bf'],
+  ['#b89264', '#faf7b0'],
+  ['#9f957f', '#f6f2a0'],
+  ['#a07d53', '#f2f48b'],
+  ['#96744b', '#edef72'],
+  ['#82623c', '#dde655'],
+];
+
+var directory = [
+  { colors: colorPairs1, name: 'Blue' },
+  { colors: colorPairs2, name: 'Bone' },
+  { colors: colorPairs3, name: 'Brown' },
+  { colors: colorPairs4, name: 'Copper' },
+  { colors: colorPairs5, name: 'Crimson' },
+  { colors: colorPairs6, name: 'Eggshell' },
+  { colors: colorPairs7, name: 'Flame' },
+  { colors: colorPairs8, name: 'Gold' },
+  { colors: colorPairs9, name: 'Green' },
+  { colors: colorPairs10, name: 'Maroon' },
+  { colors: colorPairs11, name: 'Mint' },
+  { colors: colorPairs12, name: 'Night' },
+  { colors: colorPairs13, name: 'Pink' },
+  { colors: colorPairs14, name: 'Purple' },
+  { colors: colorPairs15, name: 'Red' },
+  { colors: colorPairs16, name: 'Sea' },
+  { colors: colorPairs17, name: 'Silver' },
+  { colors: colorPairs18, name: 'Sky' },
+  { colors: colorPairs19, name: 'Stone' },
+  { colors: colorPairs20, name: 'Tan' },
+  { colors: colorPairs21, name: 'White' },
+  { colors: colorPairs22, name: 'Wood' },
+  { colors: colorPairs23, name: 'Yellow' },
+];
+// loop through ALL pairs and names
+for (var i = 0; i < directory.length; i++) {
+  var colors = directory[i].colors
+  var name = directory[i].name
+  // Loop through each color pair
+  for (var j = 0; j < colors.length; j++) {
+    var color = colors[j]
+    // Swap colors
+    activeDocument.colorReplace(
+      color[0], // old color
+      color[1], // new color
+      0, // tolerance
+      false, // anti-alias
+      false, // continuous
+      false // fill mode
+    )
+  }
+
+  // Check if the layer has a mask
+  var hasMask = false
+  try {
+    if (
+      activeDocument.activeLayer.mask.kind !== LayerKind.NOINTERLOCKCHANNELS
+    ) {
+      hasMask = true
+    }
+  } catch (e) {}
+
+  // Export the file
+  if (hasMask) {
+    activeDocument.exportDocument(
+      new File(activeDocument.path + '/primary_' + name),
+      ExportType.SAVEFORWEB,
+      new ExportOptionsSaveForWeb()
+    )
+
+    activeDocument.activeLayer.mask.enabled = true
+
+    activeDocument.exportDocument(
+      new File(activeDocument.path + '/secondary_' + name),
+      ExportType.SAVEFORWEB,
+      new ExportOptionsSaveForWeb()
+    )
+  } else {
+    activeDocument.exportDocument(
+      new File(activeDocument.path + '/' + name),
+      ExportType.SAVEFORWEB,
+      new ExportOptionsSaveForWeb()
+    )
+  }
+}

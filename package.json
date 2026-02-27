@@ -1,0 +1,55 @@
+{
+  "name": "dsg",
+  "version": "0.1.0",
+  "private": true,
+  "homepage": "https://SFoxGit.github.io/dsgtest",
+  "dependencies": {
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.6.0",
+    "@mui/icons-material": "^5.8.4",
+    "@mui/material": "^5.3.0",
+    "@mui/styled-engine-sc": "^5.3.0",
+    "@testing-library/jest-dom": "^5.16.1",
+    "@testing-library/user-event": "^13.5.0",
+    "gh-pages": "^4.0.0",
+    "html2canvas": "^1.4.1",
+    "merge-images": "^2.0.0",
+    "react": "^18.2.0",
+    "react-component-export-image": "^1.0.6",
+    "react-dnd": "^16.0.1",
+    "react-dnd-html5-backend": "^16.0.1",
+    "react-dnd-touch-backend": "^16.0.1",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.12.1",
+    "react-scripts": "5.0.0",
+    "styled-components": "^5.3.3",
+    "web-vitals": "^2.1.4",
+    "zustand": "^4.0.0-rc.4"
+  },
+  "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -b test -d build",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
